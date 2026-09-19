@@ -1,0 +1,23 @@
+{
+  "name": "kayro-the-aussie",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio UGC de Kayro The Aussie",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "media": "node scripts/build-media.mjs",
+    "import-pdf": "node scripts/import-pdf.mjs"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "multer": "^2.4.0",
+    "pg": "^8.13.1",
+    "sharp": "^0.35.4"
+  }
+}
