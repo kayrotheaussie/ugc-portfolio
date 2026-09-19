@@ -95,7 +95,8 @@
           src: card.dataset.full || img.src,
           type: card.dataset.type || (card.dataset.video ? 'video' : 'image'),
           video: card.dataset.video || '',
-          poster: img.src,
+          // Solo una portada de verdad; nunca la miniatura de reserva.
+          poster: card.dataset.poster || '',
           caption: $('.card__label', card)?.textContent?.trim() ?? '',
         };
       });
@@ -110,7 +111,7 @@
     if (item.video) {
       const video = document.createElement('video');
       video.src = item.video;
-      video.poster = item.poster;
+      if (item.poster) video.poster = item.poster;
       video.controls = true;
       video.playsInline = true;
       video.autoplay = true;

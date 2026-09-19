@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Foto de Kayro con su humana Vertical, 4:5">
+  <rect width="800" height="1000" rx="32" fill="#A8D8F5"/>
+  <rect x="28" y="28" width="744" height="944" rx="8"
+        fill="none" stroke="#4E9CCF" stroke-width="6" stroke-dasharray="18 14" opacity="0.55"/>
+  <text x="400" y="407" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans, system-ui, -apple-system, Segoe UI, sans-serif" font-size="60" font-weight="500" fill="#2E3A48" opacity="1">Foto de Kayro</text><text x="400" y="500" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans, system-ui, -apple-system, Segoe UI, sans-serif" font-size="60" font-weight="500" fill="#2E3A48" opacity="1">con su humana</text><text x="400" y="593" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans, system-ui, -apple-system, Segoe UI, sans-serif" font-size="47" font-weight="400" fill="#2E3A48" opacity="0.72">Vertical, 4:5</text>
+</svg>

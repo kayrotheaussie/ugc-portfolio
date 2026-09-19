@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600" width="900" height="1600" role="img" aria-label="Vídeo sin portada">
+  <rect width="900" height="1600" rx="32" fill="#A8D8F5"/>
+  <rect x="32" y="32" width="836" height="1536" rx="24" fill="none" stroke="#4E9CCF" stroke-width="7" stroke-dasharray="20 15" opacity="0.55"/>
+  <circle cx="450" cy="700" r="86" fill="#FFFDF6" opacity="0.92"/>
+  <path d="M424 656l80 44-80 44z" fill="#33709A"/>
+  <text x="450" y="860" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans, system-ui, -apple-system, Segoe UI, sans-serif" font-size="60" font-weight="500" fill="#2E3A48">Vídeo</text>
+  <text x="450" y="930" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans, system-ui, -apple-system, Segoe UI, sans-serif" font-size="46" fill="#2E3A48" opacity="0.72">sin portada</text>
+</svg>

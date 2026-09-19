@@ -384,7 +384,9 @@
           id: `g${Date.now().toString(36)}`,
           type: up.type,
           src: up.src,
-          thumb: up.thumb || up.poster || up.src,
+          // Sin portada (el navegador no supo descodificar el vídeo) usamos un
+          // placeholder: la miniatura nunca puede ser el propio vídeo.
+          thumb: up.thumb || up.poster || (up.type === 'video' ? '/media/placeholders/video.svg' : up.src),
           poster: up.poster || '',
           caption: 'Nueva pieza',
           category: categories[0]?.id ?? 'organico',

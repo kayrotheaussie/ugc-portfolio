@@ -13,6 +13,12 @@ es desde ahí desde donde la van a abrir las marcas.
 - **Contacto** con servicios, email e Instagram/TikTok.
 - **Modo edición** en `/?edit=1` para cambiarlo todo sin tocar código.
 
+> **Estado actual: placeholders.** Lo único real que hay ahora mismo es el
+> vídeo del hero. La foto de "Sobre mí", los cinco recortes del collage y las
+> ocho piezas de la galería son recuadros de color que dicen qué va en cada
+> sitio. Se sustituyen uno a uno desde `/?edit=1`, sin tocar código ni volver a
+> desplegar.
+
 ---
 
 ## 1. Ponerlo en marcha en tu ordenador
@@ -130,6 +136,7 @@ de `EDIT_PASSWORD` y aparece una barra abajo.
 | Cambiar cualquier texto | Haz clic encima y escribe. `Enter` confirma, `Esc` deshace. |
 | Cambiar el vídeo del hero | Botón **Cambiar vídeo del hero**, arriba del todo. |
 | Cambiar la foto de "Sobre mí" | Botón **Cambiar foto**, sobre la propia foto. |
+| Sustituir un recorte del collage | Quita el placeholder y usa **Añadir recorte**. |
 | Mover un recorte del collage | Arrástralo con el dedo o el ratón. |
 | Quitar un recorte | Clic derecho encima (o mantener pulsado en el móvil). |
 | Añadir un recorte | Botón **Añadir recorte**, arriba del collage. |
@@ -147,23 +154,36 @@ contenido de fábrica. Las fotos que hayas subido no se borran del volumen.
 Cuando subes un vídeo, la portada se saca de un fotograma en tu propio
 navegador, así que el servidor no necesita ffmpeg.
 
+> **Sobre los vídeos del iPhone.** Grábalos o expórtalos en formato
+> "Más compatible" (H.264). Si el vídeo va en HEVC, Safari lo reproduce pero
+> Chrome y Firefox no, y tampoco se puede sacar la portada: la tarjeta se queda
+> con un recuadro que pone "Vídeo sin portada". En el iPhone se cambia en
+> *Ajustes → Cámara → Formatos → Más compatible*, o al compartir el vídeo en
+> *Opciones → Más compatible*.
+
 ---
 
-## 4. Cambiar el material original
+## 4. Poner el material de verdad
 
-Las fotos y el vídeo que vienen de serie se generan a partir de lo que hay en
-`assets/`. Mira [`assets/LEEME.md`](assets/LEEME.md) para el detalle. En corto:
+Casi todo se sube desde `/?edit=1` y no hace falta tocar el repo: la foto de
+"Sobre mí", los recortes del collage y las piezas de la galería se cambian
+desde el propio navegador, también desde el móvil.
+
+La única excepción es **el vídeo del hero**, porque conviene comprimirlo antes
+de subirlo. También se puede cambiar desde `/?edit=1`, pero si quieres el
+vídeo bien optimizado:
 
 ```bash
-npm i -D ffmpeg-static @imgly/background-removal-node   # solo la primera vez
-npm run media        # regenera vídeo, póster, recortes y galería
-npm run import-pdf   # saca las fotos de assets/Kayro.pdf
+# copia tu vídeo a assets/hero.mp4, y luego:
+npm i -D ffmpeg-static   # solo la primera vez
+npm run media            # genera las dos versiones ligeras
+git add public/media && git commit -m "Nuevo vídeo del hero" && git push
 ```
 
-Después, `git add public/media && git commit && git push`, y Railway lo
-despliega solo.
-
-Para el día a día no hace falta nada de esto: se sube todo desde `/?edit=1`.
+Si tienes el portfolio de Canva en PDF, `npm run import-pdf` saca de dentro
+todas las fotos a su resolución original (y conserva la transparencia de los
+recortes). Las deja en `assets/extraidas/`, listas para subirlas desde
+`/?edit=1`. El detalle está en [`assets/LEEME.md`](assets/LEEME.md).
 
 ---
 
@@ -181,9 +201,13 @@ server/          Servidor Express
 public/          Lo que se sirve al navegador
   css/, js/, fonts/, media/
 scripts/
-  build-media.mjs  Vídeo y fotos ligeras a partir de assets/
+  build-media.mjs  Comprime el vídeo del hero que hay en assets/
   import-pdf.mjs   Fotos que hay dentro del PDF de Canva
 ```
+
+`public/media/placeholders/` son SVG diminutos (unos 60 KB en total) que
+marcan los huecos del material que falta. Cuando subas el contenido real
+dejan de usarse; puedes borrarlos entonces.
 
 ### Decisiones que conviene saber
 

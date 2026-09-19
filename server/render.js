@@ -22,8 +22,7 @@ function heroSection(c) {
     <div class="hero__media" data-hero-media>
       <video
         class="hero__video"
-        data-hero-video
-        poster="${esc(h.poster)}"
+        data-hero-video${h.poster ? ` poster="${esc(h.poster)}"` : ''}
         autoplay muted loop playsinline preload="none"
         disablepictureinpicture disableremoteplayback
         aria-hidden="true" tabindex="-1"
@@ -108,12 +107,17 @@ function collageSection(c) {
   </section>`;
 }
 
+const VIDEO_PLACEHOLDER = '/media/placeholders/video.svg';
+
 function galleryCard(item, index) {
-  const thumb = item.thumb || item.poster || item.src;
   const isVideo = item.type === 'video';
+  // Si el vídeo se subió sin portada, la miniatura no puede ser el propio
+  // archivo de vídeo: se vería como una imagen rota.
+  const thumb = item.thumb || item.poster || (isVideo ? VIDEO_PLACEHOLDER : item.src);
   return `
       <li class="card" data-item="${esc(item.id)}" data-category="${esc(item.category)}" data-index="${index}"
-          data-type="${esc(item.type)}" data-full="${esc(isVideo ? (item.poster || thumb) : item.src)}"${isVideo ? ` data-video="${esc(item.src)}"` : ''}>
+          data-type="${esc(item.type)}" data-full="${esc(isVideo ? (item.poster || thumb) : item.src)}"
+          data-poster="${esc(isVideo ? (item.poster || '') : '')}"${isVideo ? ` data-video="${esc(item.src)}"` : ''}>
         <button class="card__button" type="button" data-open="${index}">
           <span class="card__frame">
             <img src="${esc(thumb)}" alt="${esc(item.caption)}" loading="lazy" decoding="async">
@@ -185,7 +189,10 @@ function contactSection(c) {
 
 export function renderPage(content, { editMode = false, editingEnabled = false } = {}) {
   const canonical = SITE_URL ? `<link rel="canonical" href="${esc(SITE_URL)}/">` : '';
-  const ogImage = SITE_URL ? `${SITE_URL}${content.hero.poster}` : content.hero.poster;
+  // Sin póster no ponemos og:image: una imagen rota se ve peor que ninguna.
+  // Al subir el vídeo del hero desde /?edit=1 el navegador genera el póster.
+  const poster = content.hero.poster;
+  const ogImage = poster && SITE_URL ? `${SITE_URL}${poster}` : poster;
 
   return `<!doctype html>
 <html lang="es">
@@ -199,11 +206,11 @@ ${canonical}
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(content.meta.title)}">
 <meta property="og:description" content="${esc(content.meta.description)}">
-<meta property="og:image" content="${esc(ogImage)}">
-<meta name="twitter:card" content="summary_large_image">
+${ogImage ? `<meta property="og:image" content="${esc(ogImage)}">
+<meta name="twitter:card" content="summary_large_image">` : ''}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" as="image" href="${esc(content.hero.poster)}" fetchpriority="high">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/anton-400-latin.woff2" crossorigin>
+${poster ? `<link rel="preload" as="image" href="${esc(poster)}" fetchpriority="high">
+` : ''}<link rel="preload" as="font" type="font/woff2" href="/fonts/anton-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/dm-sans-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/css/styles.css">

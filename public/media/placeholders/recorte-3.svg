@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Recorte 3 PNG con transparencia">
+  <rect width="600" height="800" rx="36" fill="#FFFDF6"/>
+  <rect x="21" y="21" width="558" height="758" rx="15"
+        fill="none" stroke="#F4BC36" stroke-width="11" opacity="1"/>
+  <text x="300" y="365" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans, system-ui, -apple-system, Segoe UI, sans-serif" font-size="45" font-weight="500" fill="#2E3A48" opacity="1">Recorte 3</text><text x="300" y="435" text-anchor="middle" dominant-baseline="middle" font-family="DM Sans, system-ui, -apple-system, Segoe UI, sans-serif" font-size="35" font-weight="400" fill="#2E3A48" opacity="0.72">PNG con transparencia</text>
+</svg>

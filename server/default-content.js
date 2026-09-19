@@ -25,10 +25,12 @@ export const defaultContent = {
     scroll: 'scroll',
     video: '/media/hero/hero-1440.mp4',
     videoMobile: '/media/hero/hero-960.mp4',
-    poster: '/media/hero/hero-poster.webp',
+    // El póster se rellena solo al subir un vídeo desde /?edit=1: el navegador
+    // saca un fotograma y lo sube junto con el vídeo.
+    poster: '',
     // Si el vídeo no arranca (datos móviles, ahorro de batería, iOS en bajo
-    // consumo), se ve este recorte sobre el amarillo mantequilla.
-    fallback: '/media/stickers/kayro-2.webp',
+    // consumo), se ve esto sobre el amarillo mantequilla.
+    fallback: '/media/placeholders/hero-recorte.svg',
   },
 
   about: {
@@ -39,7 +41,7 @@ export const defaultContent = {
       'Creo contenido UGC para marcas pet friendly: unboxings que se ven enteros, reviews honestas (si algo no me gusta, se me nota en la cara), fotografía de producto y vídeo orgánico con ese aire de “esto lo ha grabado alguien de verdad”.',
       'Detrás de la cámara está mi humana, que se encarga de la luz, del montaje y de que los premios no se acaben nunca.',
     ],
-    photo: '/media/about/kayro-humana.webp',
+    photo: '/media/placeholders/sobre-mi.svg',
     photoAlt: 'Kayro con su humana',
     notes: [
       { text: 'Soy un pastor australiano de 4 meses y medio' },
@@ -53,11 +55,11 @@ export const defaultContent = {
     title: 'Content',
     tagline: 'Puppy content creator',
     stickers: [
-      { id: 'st1', src: '/media/stickers/kayro-1.webp', alt: 'Kayro corriendo', x: 15, y: 27, w: 18, rot: -9 },
-      { id: 'st2', src: '/media/stickers/kayro-2.webp', alt: 'Kayro de cerca', x: 85, y: 23, w: 19, rot: 8 },
-      { id: 'st3', src: '/media/stickers/kayro-3.webp', alt: 'Kayro con la cola en alto', x: 19, y: 75, w: 16, rot: 7 },
-      { id: 'st4', src: '/media/stickers/kayro-4.webp', alt: 'Kayro trotando', x: 82, y: 76, w: 16, rot: -7 },
-      { id: 'st5', src: '/media/stickers/kayro-5.webp', alt: 'Kayro de frente', x: 50, y: 88, w: 18, rot: -3 },
+      { id: 'st1', src: '/media/placeholders/recorte-1.svg', alt: 'Recorte de Kayro 1', x: 15, y: 27, w: 18, rot: -9 },
+      { id: 'st2', src: '/media/placeholders/recorte-2.svg', alt: 'Recorte de Kayro 2', x: 85, y: 23, w: 19, rot: 8 },
+      { id: 'st3', src: '/media/placeholders/recorte-3.svg', alt: 'Recorte de Kayro 3', x: 19, y: 75, w: 16, rot: 7 },
+      { id: 'st4', src: '/media/placeholders/recorte-4.svg', alt: 'Recorte de Kayro 4', x: 82, y: 76, w: 16, rot: -7 },
+      { id: 'st5', src: '/media/placeholders/recorte-5.svg', alt: 'Recorte de Kayro 5', x: 50, y: 88, w: 18, rot: -3 },
     ],
   },
 
@@ -72,15 +74,16 @@ export const defaultContent = {
       { id: 'organico', label: 'Contenido orgánico' },
     ],
     items: [
-      { id: 'g-video', type: 'video', src: '/media/gallery/pieza-video.mp4', poster: '/media/gallery/pieza-video.webp', thumb: '/media/gallery/pieza-video.webp', caption: 'Primer paseo del día', category: 'humor' },
-      { id: 'g1', type: 'image', src: '/media/gallery/pieza-1.webp', thumb: '/media/gallery/pieza-1-thumb.webp', caption: 'Unboxing en el campo', category: 'unboxing' },
-      { id: 'g2', type: 'image', src: '/media/gallery/pieza-2.webp', thumb: '/media/gallery/pieza-2-thumb.webp', caption: 'Review de arnés', category: 'unboxing' },
-      { id: 'g3', type: 'image', src: '/media/gallery/pieza-3.webp', thumb: '/media/gallery/pieza-3-thumb.webp', caption: 'Cuando escucho la bolsa de premios', category: 'humor' },
-      { id: 'g4', type: 'image', src: '/media/gallery/pieza-4.webp', thumb: '/media/gallery/pieza-4-thumb.webp', caption: 'Producto en exterior', category: 'producto' },
-      { id: 'g5', type: 'image', src: '/media/gallery/pieza-5.webp', thumb: '/media/gallery/pieza-5-thumb.webp', caption: 'Luz natural, cero filtros', category: 'producto' },
-      { id: 'g6', type: 'image', src: '/media/gallery/pieza-6.webp', thumb: '/media/gallery/pieza-6-thumb.webp', caption: 'Un día en la montaña', category: 'organico' },
-      { id: 'g7', type: 'image', src: '/media/gallery/pieza-7.webp', thumb: '/media/gallery/pieza-7-thumb.webp', caption: 'Rutina de mañana', category: 'organico' },
-      { id: 'g8', type: 'image', src: '/media/gallery/pieza-8.webp', thumb: '/media/gallery/pieza-8-thumb.webp', caption: 'Corriendo hacia el premio', category: 'humor' },
+      // Huecos a la espera del material real. Se sustituyen desde /?edit=1,
+      // subiendo una foto o un vídeo a cada tarjeta.
+      { id: 'g1', type: 'image', src: '/media/placeholders/pieza-1.svg', thumb: '/media/placeholders/pieza-1.svg', caption: 'Unboxing en el campo', category: 'unboxing' },
+      { id: 'g2', type: 'image', src: '/media/placeholders/pieza-2.svg', thumb: '/media/placeholders/pieza-2.svg', caption: 'Review de producto', category: 'unboxing' },
+      { id: 'g3', type: 'image', src: '/media/placeholders/pieza-3.svg', thumb: '/media/placeholders/pieza-3.svg', caption: 'Cuando escucho la bolsa de premios', category: 'humor' },
+      { id: 'g4', type: 'image', src: '/media/placeholders/pieza-4.svg', thumb: '/media/placeholders/pieza-4.svg', caption: 'Un vídeo para TikTok', category: 'humor' },
+      { id: 'g5', type: 'image', src: '/media/placeholders/pieza-5.svg', thumb: '/media/placeholders/pieza-5.svg', caption: 'Producto en exterior', category: 'producto' },
+      { id: 'g6', type: 'image', src: '/media/placeholders/pieza-6.svg', thumb: '/media/placeholders/pieza-6.svg', caption: 'Bodegón con luz natural', category: 'producto' },
+      { id: 'g7', type: 'image', src: '/media/placeholders/pieza-7.svg', thumb: '/media/placeholders/pieza-7.svg', caption: 'Un día en la montaña', category: 'organico' },
+      { id: 'g8', type: 'image', src: '/media/placeholders/pieza-8.svg', thumb: '/media/placeholders/pieza-8.svg', caption: 'Rutina de mañana', category: 'organico' },
     ],
   },
 
