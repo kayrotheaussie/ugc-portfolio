@@ -20,7 +20,7 @@ index.html            Todas las secciones
 assets/css/styles.css Estilos (tokens de color y tipografía arriba del todo)
 assets/js/main.js     Menú, filtros, lightbox y animaciones
 assets/media/         Aquí van las fotos y vídeos definitivos
-IMG_3325.mov          Vídeo de fondo del hero
+hero.mp4              Vídeo de fondo del hero
 ```
 
 Secciones: Hero · Sobre mí · Collage · Galería · Contacto.
@@ -45,9 +45,10 @@ Para cambiar su categoría, edita el `data-category` del `<figure>`
 
 ## Vídeo del hero
 
-Está en `index.html`, dentro de `<video class="hero__video">`. Admite dos fuentes:
-primero `hero.mp4` (si algún día lo añades a la raíz) y, si no existe,
-`IMG_3325.mov`. Va en bucle, silenciado, con autoplay y `playsinline`.
+Está en `index.html`, dentro de `<video class="hero__video">`, y apunta a
+`hero.mp4` (el `IMG_3325.mov` original, renombrado: es H.264 + AAC, así que
+con extensión `.mp4` lo reproducen todos los navegadores). Va en bucle,
+silenciado, con autoplay y `playsinline`. Para cambiarlo, sustituye el archivo.
 
 ## Pendiente
 
