@@ -5,6 +5,9 @@
   --cream: #FFFDF6;
   --sky: #A8D8F5;
   --blue: #4E9CCF;
+  /* Misma familia de azul pero más oscuro, para el texto pequeño y los botones:
+     #4E9CCF sobre crema se queda en 2,9:1 de contraste y no se lee bien. */
+  --blue-deep: #33709A;
   --ink: #2E3A48;
   --edge: #F6C445;
 
@@ -76,7 +79,7 @@ a { color: inherit; }
   letter-spacing: .14em;
   text-transform: uppercase;
   font-size: clamp(.7rem, 2.6vw, .82rem);
-  color: var(--blue);
+  color: var(--blue-deep);
   margin: .85rem 0 0;
 }
 
@@ -373,7 +376,7 @@ a { color: inherit; }
   transition: background-color .2s ease, color .2s ease, border-color .2s ease;
 }
 .filter:hover { border-color: var(--blue); }
-.filter.is-active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.filter.is-active { background: var(--blue-deep); border-color: var(--blue-deep); color: #fff; }
 
 .grid {
   list-style: none;
@@ -455,7 +458,7 @@ a { color: inherit; }
   font-weight: 500;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--blue-deep);
 }
 
 .pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
@@ -475,14 +478,14 @@ a { color: inherit; }
   gap: .15rem;
   margin-top: clamp(2.25rem, 7vw, 3rem);
   text-decoration: none;
-  background: var(--blue);
+  background: var(--blue-deep);
   color: #fff;
   padding: .95rem 2.25rem;
   border-radius: 999rem;
   box-shadow: 0 16px 30px -18px rgba(46, 58, 72, .9);
   transition: transform .2s ease, background-color .2s ease;
 }
-.button:hover, .button:focus-visible { transform: translateY(-2px); background: #3f89ba; }
+.button:hover, .button:focus-visible { transform: translateY(-2px); background: #2a5d80; }
 .button > span:first-child { font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .82rem; }
 .button__mail { font-size: .92rem; opacity: .92; }
 
@@ -497,7 +500,7 @@ a { color: inherit; }
 }
 .social:hover, .social:focus-visible { transform: translateY(-2px); }
 .social__label { display: block; font-weight: 700; font-size: .88rem; }
-.social__handle { display: block; font-size: .8rem; color: var(--blue); }
+.social__handle { display: block; font-size: .8rem; color: var(--blue-deep); }
 
 .footer {
   margin-top: clamp(3rem, 10vw, 5rem);

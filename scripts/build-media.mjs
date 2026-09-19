@@ -64,7 +64,7 @@ async function buildHero(bin, src) {
 
   const frame = path.join(OUT, 'hero', '.poster-tmp.jpg');
   await ffmpeg(bin, ['-ss', '1.0', '-i', src, '-frames:v', '1', '-q:v', '2', frame]);
-  await sharp(frame).resize({ width: 1280 }).webp({ quality: 66, effort: 6 }).toFile(path.join(OUT, 'hero', 'hero-poster.webp'));
+  await sharp(frame).resize({ width: 1000 }).webp({ quality: 60, effort: 6 }).toFile(path.join(OUT, 'hero', 'hero-poster.webp'));
   await fs.unlink(frame).catch(() => {});
 }
 
@@ -156,8 +156,8 @@ async function verticalCard(file, out, { width = 900 } = {}) {
   const centre = box ? box.left + box.width / 2 : meta.width / 2;
   const left = Math.max(0, Math.min(meta.width - cropW, Math.round(centre - cropW / 2)));
   const cropped = await sharp(file).extract({ left, top: 0, width: cropW, height: meta.height }).toBuffer();
-  await sharp(cropped).resize({ width }).webp({ quality: 74, effort: 6 }).toFile(`${out}.webp`);
-  await sharp(cropped).resize({ width: 480 }).webp({ quality: 72, effort: 6 }).toFile(`${out}-thumb.webp`);
+  await sharp(cropped).resize({ width }).webp({ quality: 72, effort: 6 }).toFile(`${out}.webp`);
+  await sharp(cropped).resize({ width: 460 }).webp({ quality: 68, effort: 6 }).toFile(`${out}-thumb.webp`);
 }
 
 async function main() {
@@ -199,12 +199,12 @@ async function main() {
   const pbox = await findSubject(portrait, { pad: 0.5 }).catch(() => null);
   const pc = pbox ? pbox.left + pbox.width / 2 : pm.width / 2;
   const pleft = Math.max(0, Math.min(pm.width - pw, Math.round(pc - pw / 2)));
-  const pcrop = sharp(portrait).extract({ left: pleft, top: 0, width: pw, height: pm.height }).resize({ width: 1100 });
-  await pcrop.clone().webp({ quality: 76, effort: 6 }).toFile(path.join(OUT, 'about', 'kayro-humana.webp'));
+  const pcrop = sharp(portrait).extract({ left: pleft, top: 0, width: pw, height: pm.height }).resize({ width: 760 });
+  await pcrop.clone().webp({ quality: 72, effort: 6 }).toFile(path.join(OUT, 'about', 'kayro-humana.webp'));
 
   console.log('· Galería…');
   await fs.mkdir(path.join(OUT, 'gallery'), { recursive: true });
-  const galleryTimes = [0.42, 0.58, 0.72, 0.9, 1.02, 1.12, 1.22, 1.3];
+  const galleryTimes = [0.35, 0.5, 0.62, 0.75, 0.88, 1.0, 1.1, 1.2];
   const gframes = await grabFrames(bin, src, galleryTimes, tmp);
   for (let i = 0; i < gframes.length; i++) {
     await verticalCard(gframes[i], path.join(OUT, 'gallery', `pieza-${i + 1}`));

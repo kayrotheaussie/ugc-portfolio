@@ -163,6 +163,8 @@
 
   function wireTexts() {
     $$('[data-edit]').forEach((el) => {
+      if (el.dataset.edWired) return;
+      el.dataset.edWired = '1';
       el.setAttribute('contenteditable', 'plaintext-only');
       el.spellcheck = true;
 
@@ -237,6 +239,33 @@
       } catch (err) { toast(err.message); }
     });
     figure.append(change);
+  }
+
+  function wireSocialLinks() {
+    $$('[data-edit-link]').forEach((link) => {
+      const path = link.dataset.editLink;
+      const change = button('Enlace');
+      change.style.position = 'static';
+      change.style.marginTop = '.4rem';
+      change.addEventListener('click', (event) => {
+        event.preventDefault();
+        modal({
+          title: 'Enlace',
+          description: 'Dirección completa, empezando por https://',
+          field: 'text',
+          value: get(path) ?? '',
+          confirmLabel: 'Guardar enlace',
+          onConfirm: (value) => {
+            const url = String(value || '').trim();
+            if (!/^https?:\/\//i.test(url)) throw new Error('Tiene que empezar por http:// o https://');
+            set(path, url);
+            link.href = url;
+            return true;
+          },
+        });
+      });
+      link.after(change);
+    });
   }
 
   /* ------------------------------------------------- stickers */
@@ -482,7 +511,8 @@
 
     const reset = document.createElement('button');
     reset.className = 'ed-btn ed-btn--danger';
-    reset.textContent = 'Restaurar original';
+    reset.textContent = 'Restaurar';
+    reset.title = 'Devolver la web al contenido original';
     reset.addEventListener('click', async () => {
       if (!window.confirm('Esto devuelve toda la web al contenido original. ¿Seguro?')) return;
       try {
@@ -537,6 +567,7 @@
     wireTexts();
     wireHero();
     wireAboutPhoto();
+    wireSocialLinks();
     wireStickers();
     wireGallery();
     setStatus('Listo');

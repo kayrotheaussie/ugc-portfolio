@@ -3,6 +3,12 @@ import { SITE_URL } from './config.js';
 const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 export const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ESCAPES[c]);
 
+/** Solo dejamos pasar enlaces normales: nada de javascript: ni data:. */
+function safeUrl(value) {
+  const url = String(value ?? '').trim();
+  return /^(https?:\/\/|mailto:|\/)/i.test(url) ? url : '#';
+}
+
 /** Marca un nodo como editable para el modo edición. */
 const ed = (path) => ` data-edit="${esc(path)}"`;
 
@@ -62,14 +68,14 @@ function aboutSection(c) {
     <div class="about__grid">
       <figure class="about__photo reveal">
         <img src="${esc(a.photo)}" alt="${esc(a.photoAlt)}"
-             loading="lazy" decoding="async" data-edit-image="about.photo">
+             loading="lazy" decoding="async">
         ${notes}
       </figure>
 
       <div class="about__text">
         <h2 class="display display--blue reveal"${ed('about.title')}>${esc(a.title)}</h2>
         <p class="kicker reveal"${ed('about.kicker')}>${esc(a.kicker)}</p>
-        <div class="prose reveal" data-edit-list="about.body">
+        <div class="prose reveal">
           ${body}
         </div>
       </div>
@@ -148,7 +154,8 @@ function contactSection(c) {
   const social = k.social
     .map(
       (s, i) => `
-        <a class="social" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" data-edit-link="contact.social.${i}.url">
+        <a class="social" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener noreferrer"
+           data-edit-link="contact.social.${i}.url">
           <span class="social__label"${ed(`contact.social.${i}.label`)}>${esc(s.label)}</span>
           <span class="social__handle"${ed(`contact.social.${i}.handle`)}>${esc(s.handle)}</span>
         </a>`,
@@ -163,9 +170,9 @@ function contactSection(c) {
       <p class="contact__intro reveal"${ed('contact.intro')}>${esc(k.intro)}</p>
 
       <h3 class="contact__subtitle"${ed('contact.servicesTitle')}>${esc(k.servicesTitle)}</h3>
-      <ul class="pills" data-edit-list="contact.services">${services}</ul>
+      <ul class="pills">${services}</ul>
 
-      <a class="button" href="mailto:${esc(k.email)}" data-edit-mail="contact.email">
+      <a class="button" href="${esc(safeUrl(`mailto:${k.email}`))}">
         <span${ed('contact.emailLabel')}>${esc(k.emailLabel)}</span>
         <span class="button__mail"${ed('contact.email')}>${esc(k.email)}</span>
       </a>

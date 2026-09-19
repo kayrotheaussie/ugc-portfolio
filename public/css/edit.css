@@ -1,8 +1,8 @@
 /* Interfaz del modo edición (/?edit=1). Solo se carga en ese modo. */
 
-:root { --edit-accent: #4E9CCF; }
+:root { --edit-accent: #33709A; }
 
-body[data-edit-mode] { padding-bottom: 5.5rem; }
+body[data-edit-mode] { padding-bottom: 5rem; }
 
 /* ---- barra inferior -------------------------------------------------- */
 
@@ -14,11 +14,14 @@ body[data-edit-mode] { padding-bottom: 5.5rem; }
   z-index: 80;
   display: flex;
   align-items: center;
-  gap: .5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: calc(100vw - 1.5rem);
-  padding: .55rem .7rem;
+  gap: .4rem;
+  /* Una sola fila que se desliza si no cabe: en el móvil, varias filas de
+     botones tapaban media pantalla. */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  max-width: calc(100vw - 1.25rem);
+  padding: .5rem .6rem;
   border-radius: 1rem;
   background: rgba(24, 32, 42, .93);
   color: #FFFDF6;
@@ -27,7 +30,8 @@ body[data-edit-mode] { padding-bottom: 5.5rem; }
   font-size: .82rem;
 }
 
-.ed-bar__status { opacity: .75; padding-inline: .35rem; min-width: 5rem; }
+.ed-bar::-webkit-scrollbar { display: none; }
+.ed-bar__status { opacity: .75; padding-inline: .35rem; white-space: nowrap; }
 .ed-bar__status[data-state="dirty"] { color: #FFD66B; opacity: 1; }
 .ed-bar__status[data-state="saved"] { color: #9BE59B; opacity: 1; }
 .ed-bar__status[data-state="error"] { color: #FF9C8A; opacity: 1; }
@@ -38,14 +42,14 @@ body[data-edit-mode] { padding-bottom: 5.5rem; }
   cursor: pointer;
   border: 0;
   border-radius: .65rem;
-  padding: .5rem .85rem;
+  padding: .5rem .8rem;
   background: rgba(255, 253, 246, .14);
   color: inherit;
   white-space: nowrap;
 }
 .ed-btn:hover { background: rgba(255, 253, 246, .26); }
 .ed-btn--primary { background: var(--edit-accent); color: #fff; }
-.ed-btn--primary:hover { background: #3f89ba; }
+.ed-btn--primary:hover { background: #2a5d80; }
 .ed-btn--danger { background: rgba(255, 120, 100, .22); }
 .ed-btn[disabled] { opacity: .45; cursor: default; }
 
@@ -132,6 +136,8 @@ body[data-edit-mode] .card__button { cursor: default; }
 }
 .ed-gallery-add { display: block; margin: 1.5rem auto 0; }
 
+body[data-edit-mode] .socials { align-items: flex-start; }
+
 /* ---- ventana de contraseña / avisos ---------------------------------- */
 
 .ed-modal {
@@ -173,7 +179,7 @@ body[data-edit-mode] .card__button { cursor: default; }
 .ed-toast {
   position: fixed;
   left: 50%;
-  bottom: 5.5rem;
+  bottom: 4.6rem;
   translate: -50% 0;
   z-index: 95;
   background: rgba(24, 32, 42, .95);
