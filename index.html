@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kayro The Aussie — Puppy content creator</title>
+  <meta name="description" content="Portfolio UGC de Kayro The Aussie, pastor australiano cachorro creador de contenido para marcas pet friendly." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Allura&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       1. HERO
+       Vídeo de fondo: sustituir el <source> por el archivo final.
+       ============================================================ -->
+  <header class="hero" id="inicio">
+    <div class="hero__video-wrap">
+      <video class="hero__video" autoplay loop muted playsinline preload="auto" poster="">
+        <!-- Vídeo del hero. Para cambiarlo, sustituye este src por el archivo nuevo.
+             Sin atributo type: así el navegador acepta el .mov (H.264) sin descartarlo. -->
+        <source src="IMG_3325.mov" />
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="nav__brand" href="#inicio">
+        Kayro <span class="script">The Aussie</span>
+      </a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contenido">Contenido</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero__content">
+      <h1 class="hero__title">
+        <span class="hero__name">Kayro</span>
+        <span class="hero__script script">The Aussie</span>
+      </h1>
+      <p class="hero__tagline">Puppy content creator</p>
+    </div>
+
+    <a class="hero__scroll" href="#sobre-mi">
+      <span>scroll</span>
+      <span class="hero__arrow" aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         2. SOBRE MÍ
+         ============================================================ -->
+    <section class="about section" id="sobre-mi">
+      <div class="container about__grid">
+
+        <div class="about__media reveal">
+          <!-- SUSTITUIR por: <img src="assets/media/kayro-humana.jpg" alt="Kayro con su humana"> -->
+          <div class="ph ph--portrait" data-slot="about-foto-principal">
+            Foto Kayro + humana
+          </div>
+
+          <p class="note note--1">Soy un pastor australiano de 4 meses y medio</p>
+          <p class="note note--2">Soy juguetón y me encantan los premios. En serio, me vuelvo loco.</p>
+          <p class="note note--3">Esta es mi humana :)</p>
+        </div>
+
+        <div class="about__text reveal">
+          <h2 class="section__title">Sobre mí</h2>
+          <p class="section__subtitle">El perro más cool de tu FYP</p>
+
+          <!-- TEXTO PROVISIONAL: sustituir por el texto del PDF (Kayro.pdf) -->
+          <p>
+            ¡Hola! Soy Kayro, un pastor australiano de cuatro meses y medio con muchísima
+            energía y una cámara siempre cerca. Desde que llegué a casa me he convertido en
+            el protagonista de cada vídeo: pruebo juguetes, destrozo cajas de unboxing con
+            estilo y pongo caras que funcionan muy bien en TikTok.
+          </p>
+          <p>
+            Trabajo con marcas pet friendly creando contenido UGC natural, divertido y sin
+            postureo. Nada de anuncios aburridos: vídeos que parecen de un amigo, no de una
+            marca. Mi humana se encarga de grabar, editar y de que todo llegue a tiempo;
+            yo pongo la carita y el entusiasmo.
+          </p>
+          <p>
+            Si buscas contenido que se sienta real, con un cachorro que de verdad usa lo que
+            enseña, estás en el sitio correcto. Aviso: trabajo por premios.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. COLLAGE
+         Cada sticker es un elemento independiente: sustituir el div
+         por un <img src="...png" alt=""> manteniendo la clase.
+         ============================================================ -->
+    <section class="collage" aria-label="Kayro content">
+      <div class="collage__arc" aria-hidden="true"></div>
+
+      <div class="collage__inner">
+        <p class="collage__script script">UGC</p>
+        <h2 class="collage__word">Content</h2>
+        <p class="collage__tagline">Puppy content creator</p>
+      </div>
+
+      <div class="sticker sticker--1"><span class="ph ph--sticker" data-slot="sticker-1">Sticker Kayro 1</span></div>
+      <div class="sticker sticker--2"><span class="ph ph--sticker" data-slot="sticker-2">Sticker Kayro 2</span></div>
+      <div class="sticker sticker--3"><span class="ph ph--sticker" data-slot="sticker-3">Sticker Kayro 3</span></div>
+      <div class="sticker sticker--4"><span class="ph ph--sticker" data-slot="sticker-4">Sticker Kayro 4</span></div>
+      <div class="sticker sticker--5"><span class="ph ph--sticker" data-slot="sticker-5">Sticker Kayro 5</span></div>
+    </section>
+
+    <!-- ============================================================
+         4. GALERÍA
+         ============================================================ -->
+    <section class="gallery section" id="contenido">
+      <div class="container">
+        <header class="gallery__head reveal">
+          <h2 class="section__title">Contenido</h2>
+          <p class="section__subtitle">Lo que he grabado últimamente</p>
+        </header>
+
+        <div class="filters reveal" role="tablist" aria-label="Filtrar contenido por categoría">
+          <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">Todo</button>
+          <button class="filter" data-filter="unboxing" role="tab" aria-selected="false">Unboxing / Review</button>
+          <button class="filter" data-filter="humor" role="tab" aria-selected="false">Humor / TikTok</button>
+          <button class="filter" data-filter="producto" role="tab" aria-selected="false">Fotografía de producto</button>
+          <button class="filter" data-filter="organico" role="tab" aria-selected="false">Contenido orgánico</button>
+        </div>
+
+        <div class="grid" id="gallery-grid">
+
+          <!-- Unboxing / Review -->
+          <figure class="card reveal" data-category="unboxing" tabindex="0" role="button" aria-label="Abrir Vídeo unboxing 1">
+            <div class="card__media"><div class="ph ph--card" data-slot="unboxing-1">Vídeo unboxing 1</div></div>
+            <figcaption class="card__label">Vídeo unboxing 1</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="unboxing" tabindex="0" role="button" aria-label="Abrir Vídeo unboxing 2">
+            <div class="card__media"><div class="ph ph--card" data-slot="unboxing-2">Vídeo unboxing 2</div></div>
+            <figcaption class="card__label">Vídeo unboxing 2</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="unboxing" tabindex="0" role="button" aria-label="Abrir Vídeo review 1">
+            <div class="card__media"><div class="ph ph--card" data-slot="unboxing-3">Vídeo review 1</div></div>
+            <figcaption class="card__label">Vídeo review 1</figcaption>
+          </figure>
+
+          <!-- Humor / TikTok -->
+          <figure class="card reveal" data-category="humor" tabindex="0" role="button" aria-label="Abrir TikTok humor 1">
+            <div class="card__media"><div class="ph ph--card" data-slot="humor-1">TikTok humor 1</div></div>
+            <figcaption class="card__label">TikTok humor 1</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="humor" tabindex="0" role="button" aria-label="Abrir TikTok humor 2">
+            <div class="card__media"><div class="ph ph--card" data-slot="humor-2">TikTok humor 2</div></div>
+            <figcaption class="card__label">TikTok humor 2</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="humor" tabindex="0" role="button" aria-label="Abrir TikTok humor 3">
+            <div class="card__media"><div class="ph ph--card" data-slot="humor-3">TikTok humor 3</div></div>
+            <figcaption class="card__label">TikTok humor 3</figcaption>
+          </figure>
+
+          <!-- Fotografía de producto -->
+          <figure class="card reveal" data-category="producto" tabindex="0" role="button" aria-label="Abrir Foto producto 1">
+            <div class="card__media"><div class="ph ph--card" data-slot="producto-1">Foto producto 1</div></div>
+            <figcaption class="card__label">Foto producto 1</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="producto" tabindex="0" role="button" aria-label="Abrir Foto producto 2">
+            <div class="card__media"><div class="ph ph--card" data-slot="producto-2">Foto producto 2</div></div>
+            <figcaption class="card__label">Foto producto 2</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="producto" tabindex="0" role="button" aria-label="Abrir Foto producto 3">
+            <div class="card__media"><div class="ph ph--card" data-slot="producto-3">Foto producto 3</div></div>
+            <figcaption class="card__label">Foto producto 3</figcaption>
+          </figure>
+
+          <!-- Contenido orgánico -->
+          <figure class="card reveal" data-category="organico" tabindex="0" role="button" aria-label="Abrir Contenido orgánico 1">
+            <div class="card__media"><div class="ph ph--card" data-slot="organico-1">Contenido orgánico 1</div></div>
+            <figcaption class="card__label">Contenido orgánico 1</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="organico" tabindex="0" role="button" aria-label="Abrir Contenido orgánico 2">
+            <div class="card__media"><div class="ph ph--card" data-slot="organico-2">Contenido orgánico 2</div></div>
+            <figcaption class="card__label">Contenido orgánico 2</figcaption>
+          </figure>
+          <figure class="card reveal" data-category="organico" tabindex="0" role="button" aria-label="Abrir Contenido orgánico 3">
+            <div class="card__media"><div class="ph ph--card" data-slot="organico-3">Contenido orgánico 3</div></div>
+            <figcaption class="card__label">Contenido orgánico 3</figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. CONTACTO
+         ============================================================ -->
+    <section class="contact section" id="contacto">
+      <div class="container contact__grid">
+
+        <div class="contact__intro reveal">
+          <p class="contact__script script">Vamos a conocernos</p>
+          <h2 class="contact__title">¿Hablamos?</h2>
+          <p class="contact__lead">
+            Si tu marca es pet friendly y quiere contenido con un cachorro que de verdad
+            disfruta grabando, escríbeme. Respondo rápido (mi humana, en realidad).
+          </p>
+
+          <div class="contact__actions">
+            <a class="btn btn--primary" href="mailto:kayro.theaussie@gmail.com">
+              kayro.theaussie@gmail.com
+            </a>
+            <div class="contact__social">
+              <a class="btn btn--ghost" href="https://instagram.com/kayro.theaussie" target="_blank" rel="noopener">Instagram @kayro.theaussie</a>
+              <a class="btn btn--ghost" href="https://tiktok.com/@kayro.theaussie" target="_blank" rel="noopener">TikTok @kayro.theaussie</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__services reveal">
+          <h3 class="services__title">Servicios</h3>
+          <ul class="services">
+            <li>UGC</li>
+            <li>Contenido orgánico</li>
+            <li>Paid ads</li>
+            <li>Fotografía de mascotas</li>
+            <li>Fotografía de producto</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Kayro <span class="script">The Aussie</span> · Puppy content creator</p>
+    <p class="footer__small">&copy; <span id="year"></span> · Hecho con muchos premios</p>
+  </footer>
+
+  <!-- Lightbox de la galería -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Contenido ampliado" hidden>
+    <button class="lightbox__close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="lightbox__inner">
+      <div class="lightbox__media" id="lightbox-media"></div>
+      <p class="lightbox__label" id="lightbox-label"></p>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
