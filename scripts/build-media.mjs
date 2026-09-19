@@ -25,7 +25,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ASSETS = path.join(ROOT, 'assets');
 const OUT = path.join(ROOT, 'public', 'media');
 
-const OUTLINE = { r: 0xF6, g: 0xC4, b: 0x45 }; // amarillo del borde de los recortes
+const OUTLINE = { r: 0xF4, g: 0xBC, b: 0x36 }; // amarillo del borde de los recortes
 
 async function resolveFfmpeg() {
   if (process.env.FFMPEG_PATH) return process.env.FFMPEG_PATH;
@@ -185,7 +185,7 @@ async function main() {
   await fs.mkdir(path.join(OUT, 'stickers'), { recursive: true });
   for (let i = 0; i < frames.length; i++) {
     const png = await cutout(frames[i], tmp);
-    const webp = await addOutline(png, { width: 900, outline: 18 });
+    const webp = await addOutline(png, { width: 900, outline: 20 });
     const dest = path.join(OUT, 'stickers', `kayro-${i + 1}.webp`);
     await fs.writeFile(dest, webp);
     console.log(`  kayro-${i + 1}.webp  ${(webp.length / 1024).toFixed(0)} KB`);
@@ -204,7 +204,7 @@ async function main() {
 
   console.log('· Galería…');
   await fs.mkdir(path.join(OUT, 'gallery'), { recursive: true });
-  const galleryTimes = [0.45, 0.65, 0.85, 1.05, 1.15, 1.25, 1.45, 1.7];
+  const galleryTimes = [0.42, 0.58, 0.72, 0.9, 1.02, 1.12, 1.22, 1.3];
   const gframes = await grabFrames(bin, src, galleryTimes, tmp);
   for (let i = 0; i < gframes.length; i++) {
     await verticalCard(gframes[i], path.join(OUT, 'gallery', `pieza-${i + 1}`));

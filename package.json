@@ -19,5 +19,8 @@
     "multer": "^2.4.0",
     "pg": "^8.13.1",
     "sharp": "^0.35.4"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^6.3.289"
   }
 }
