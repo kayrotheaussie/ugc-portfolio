@@ -3,20 +3,6 @@
    Escritorio primero; adaptaciones al final, en RESPONSIVE.
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   Fuente del nombre del hero.
-   Si assets/fonts/advercase.woff2 no existe, el navegador ignora esta regla
-   y cae en Outfit, que es la alternativa. Ver assets/fonts/LEEME.md
-   -------------------------------------------------------------------------- */
-@font-face {
-  font-family: 'Advercase';
-  src: url('../fonts/advercase.woff2') format('woff2'),
-       url('../fonts/advercase.woff')  format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --butter: #FFF3C6;        /* amarillo pastel: fondo principal */
   --butter-soft: #FFF9E4;   /* el mismo, más claro, para alternar bloques */
@@ -24,9 +10,10 @@
   --sky: #A9C6E8;           /* azul suave: acentos, bordes, rellenos */
   --sky-text: #4A6FA5;      /* azul medio legible (4,6:1 sobre el fondo) */
   --navy: #2F4A7A;          /* azul intenso: textos y botones */
+  --hero-azul: #AEDDF5;     /* azul claro del título del hero */
 
-  --font-name:    'Advercase', 'Outfit', sans-serif;  /* solo el nombre del hero */
-  --font-script:  'Yellowtail', cursive;
+  --font-kayro:   'Anton', 'Arial Narrow', sans-serif;   /* el "Kayro" del hero */
+  --font-script:  'Kaushan Script', cursive;             /* firma de pincel */
   --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
   --font-body:    'Work Sans', system-ui, sans-serif;
 
@@ -196,25 +183,75 @@ p { margin: 0 0 1.2em; }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-start;
-  width: min(100% - 110px, 1560px);
+  align-items: stretch;
+  text-align: center;
+  width: min(100% - 60px, 1680px);
   margin-inline: auto;
-  padding: 40px 0 110px;
+  padding: 40px 0 clamp(70px, 9vw, 140px);
 }
 
-/* El nombre, enorme */
-.hero__name {
-  font-family: var(--font-name);
+/* --- Título en dos capas ------------------------------------------------
+   "Kayro" en condensada pesada y "The Aussie" encima, en script, con un
+   contorno del color del fondo que lo recorta donde se cruzan.          */
+
+.hero__pre {
+  margin: 0 0 .5em;
+  font-size: clamp(12px, 1.15vw, 18px);
   font-weight: 400;
-  font-size: clamp(38px, 8.4vw, 148px);
-  line-height: 1.04;
-  letter-spacing: -.02em;
-  color: var(--card);
-  text-shadow: 0 16px 46px rgba(22, 34, 56, .45);
+  letter-spacing: .12em;
+  color: #C9CEd6;
+  text-shadow: 0 2px 10px rgba(22, 34, 56, .5);
+}
+
+.hero__title {
+  position: relative;
+  display: block;
+  width: 100%;
+  font-weight: 400;
+}
+
+.hero__kayro {
+  display: block;
+  font-family: var(--font-kayro);
+  /* El tamaño va en vw para que ocupe casi todo el ancho en cualquier pantalla */
+  font-size: clamp(72px, 32.5vw, 540px);
+  line-height: .82;
+  letter-spacing: -.005em;
+  color: var(--hero-azul);
+  text-shadow: 0 18px 50px rgba(22, 34, 56, .35);
+}
+
+.hero__aussie {
+  position: absolute;
+  left: 50%;
+  bottom: .04em;
+  z-index: 2;
+  font-family: var(--font-script);
+  font-size: clamp(38px, 16.5vw, 274px);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--hero-azul);
+  transform: translateX(-50%) rotate(-6deg);
+  transform-origin: center;
+
+  /* El contorno se pinta por debajo del relleno: así recorta "Kayro" */
+  -webkit-text-stroke: .075em var(--butter);
+  paint-order: stroke fill;
+}
+
+/* Para lectores de pantalla: el <h1> se lee "Kayro The Aussie" una sola vez */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .hero__tagline {
-  margin: 14px 0 0;
+  margin: 26px 0 0;
   font-size: clamp(12px, 1.05vw, 16px);
   font-weight: 500;
   letter-spacing: .42em;
@@ -225,10 +262,9 @@ p { margin: 0 0 1.2em; }
 
 .hero__scroll {
   position: absolute;
-  left: 50%;
-  bottom: 38px;
-  transform: translateX(-50%);
-  z-index: 2;
+  right: 30px;
+  bottom: 34px;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -415,6 +451,7 @@ p { margin: 0 0 1.2em; }
 .photos { padding: 170px 0; background: var(--butter); overflow: hidden; }
 .photos__head { margin-bottom: 60px; }
 
+.section__sub,
 .photos__sub {
   margin: 14px 0 0;
   font-size: clamp(15px, 1.3vw, 20px);
@@ -657,6 +694,9 @@ p { margin: 0 0 1.2em; }
 
   .nav__menu.is-open { display: flex; }
   .nav__menu a { padding: 12px 16px; text-align: center; }
+
+  /* En pantallas pequeñas el título llega hasta abajo y lo pisaría */
+  .hero__scroll { display: none; }
 
   .about__grid { grid-template-columns: 1fr; gap: 54px; }
   .about__media { max-width: 420px; }
