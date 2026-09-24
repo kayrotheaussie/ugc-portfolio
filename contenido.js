@@ -36,7 +36,7 @@ const CONTENIDO = {
     { archivo: "video-06.mp4", poster: "video-06.jpg", etiqueta: "Advance Puppy Snack" },
 
     { archivo: "video-04.mp4", poster: "video-04.jpg", etiqueta: "Primer plano en brazos" },
-    { archivo: "video-09.mp4", poster: "video-09.jpg", etiqueta: "Paseo con correa" },
+    { archivo: "video-09.mp4", poster: "video-09.jpg", etiqueta: "Humor para TikTok" },
     { archivo: "video-02.mp4", poster: "video-02.jpg", etiqueta: "Humor para TikTok" }
   ],
 
