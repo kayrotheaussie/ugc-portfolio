@@ -29,10 +29,11 @@ No hace falta decir si es foto o vídeo: se sabe por la extensión.
 
 | En `contenido.js` | Qué es | Formato |
 |---|---|---|
-| `hero` | Vídeo de fondo de la portada + su póster | MP4 H.264 1080p, sin audio |
+| (el hero va en `index.html`, no aquí) | Vídeo de fondo de la portada | MP4 H.264 1080p, sin audio |
+| `marcas` | Los logos de la franja de marcas | PNG o SVG con fondo transparente |
 | `sobreMi` | La foto vertical de "Sobre mí" | Vertical 3:4, WebP |
 | `collage` | La imagen con los stickers de Kayro | PNG o WebP, se muestra entera |
-| `galeria` | Las tarjetas de vídeo de "Contenido" | Vertical 9:16, MP4 + póster JPG |
+| `galeria` | Los vídeos de "Selected clips" | Vertical 9:16, MP4 + póster JPG |
 | `fotos` | Las fotos del carrusel | Vertical, WebP |
 
 En `galeria` y en `fotos` puedes **añadir o quitar** líneas libremente: la

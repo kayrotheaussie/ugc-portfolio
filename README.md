@@ -16,17 +16,17 @@ se ve mejor servido desde el servidor local.)
 ## Estructura
 
 ```
-index.html            Todas las secciones
+index.html            Todas las secciones (y el vídeo del hero)
 gracias.html          Adonde llega el formulario tras enviarse
 contenido.js          TUS fotos y vídeos: el único archivo que tocas a diario
 assets/media/         Aquí están las fotos y los vídeos ya optimizados
 assets/css/styles.css Estilos (colores y tipografías arriba del todo)
-assets/js/main.js     Hero, galería, carrusel, lightbox y menú
+assets/js/main.js     Vídeos, carrusel, lightbox y menú
 ```
 
 Para meter contenido, lee **[CONTENIDO.md](CONTENIDO.md)**: son 3 pasos.
 
-Secciones: Hero · Sobre mí · UGC Content · Galería de vídeos · Fotos · Contacto.
+Secciones: Hero · Sobre mí · Marcas · Selected clips · UGC Content · Fotos · Got a brief?
 
 ## Cómo sustituir los placeholders
 
@@ -37,10 +37,22 @@ de color con su etiqueta, así puedes ir rellenando de uno en uno.
 Está explicado paso a paso en **[CONTENIDO.md](CONTENIDO.md)**.
 
 
+## La web publicada
+
+GitHub Pages: **Settings → Pages → Source: Deploy from a branch → Branch:
+`main` / carpeta `/ (root)` → Save**. En un par de minutos queda en:
+
+<https://kayrotheaussie.github.io/ugc-portfolio/>
+
+Tiene que publicarse desde `main`: si se publica desde otra rama, los cambios
+que estén en `main` no se ven, y al revés.
+
 ## Vídeo del hero
 
-Está en `assets/media/hero.mp4`, con su póster al lado, y se declara en
-`contenido.js`. Va en bucle, silenciado, con autoplay y `playsinline`.
+Está en `assets/media/hero.mp4`, con su póster al lado, y se declara
+**directamente en `index.html`**, no en `contenido.js`. Es a propósito: si
+dependiera del JavaScript y algo fallara, la portada se quedaría negra. Va en
+bucle infinito, silenciado, con `autoplay` y `playsinline`.
 
 Viene de `Videhome.MOV`, que estaba en **HEVC**: ese es el códec que Chrome y
 Firefox no reproducen, y por eso no se veía en ordenador. Convertido a MP4
@@ -57,8 +69,9 @@ funcione bien haría falta un clip de 8-15 segundos.
 | Acento | `#A9C6E8` azul suave |
 | Texto y botones | `#2F4A7A` azul intenso (7,9:1 de contraste sobre el fondo) |
 | Azul de subtítulos | `#4A6FA5` (4,6:1; el `#A9C6E8` no llega como texto) |
-| Títulos | Fredoka |
-| Texto | DM Sans |
+| Nombre y toques caligráficos | Yellowtail |
+| Títulos | Bebas Neue |
+| Texto | Work Sans |
 
 ## Pendiente
 

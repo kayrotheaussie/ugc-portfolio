@@ -14,11 +14,22 @@
 
 const CONTENIDO = {
 
-  /* --- HERO: vídeo de fondo a pantalla completa -------------------------- */
-  hero: {
-    archivo: "hero.mp4",              // Videhome.MOV convertido a MP4 H.264
-    poster:  "hero-poster.jpg"        // se ve mientras carga el vídeo
-  },
+  /* --- HERO ---------------------------------------------------------------
+     OJO: el vídeo del hero NO se declara aquí, sino directamente en
+     index.html (busca <video class="hero__video">). Está así a propósito:
+     si dependiera del JavaScript y algo fallara, la portada se quedaría
+     negra. Para cambiarlo, sustituye assets/media/hero.mp4 y su póster.   */
+
+  /* --- MARCAS: los logos de la franja ------------------------------------
+     Deja "archivo" vacío y sale el hueco de puntos con el texto.          */
+  marcas: [
+    { nombre: "Tu marca aquí", archivo: "" },
+    { nombre: "Tu marca aquí", archivo: "" },
+    { nombre: "Tu marca aquí", archivo: "" },
+    { nombre: "Tu marca aquí", archivo: "" },
+    { nombre: "Tu marca aquí", archivo: "" },
+    { nombre: "Tu marca aquí", archivo: "" }
+  ],
 
   /* --- SOBRE MÍ: la foto vertical (3:4) ---------------------------------- */
   sobreMi: {

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Kayro The Aussie — interacciones
+   Kayro the Aussie — interacciones
    Sin dependencias. Las fotos y los vídeos salen de contenido.js
    ========================================================================== */
 (function () {
@@ -7,6 +7,44 @@
 
   var MEDIA = 'assets/media/';
   var datos = typeof CONTENIDO !== 'undefined' ? CONTENIDO : {};
+
+  /* ----------------------------------------------------------------------
+     Reproducir un vídeo sin que el navegador lo bloquee.
+     La regla es: si está silenciado y es "inline", dejan reproducir solo.
+     Aun así puede fallar (modo de ahorro de energía), y entonces se queda
+     el póster, que por eso lleva todos los vídeos.
+     ---------------------------------------------------------------------- */
+  function reproducir(video) {
+    if (!video) return;
+    video.muted = true;           // imprescindible para el autoplay
+    var intento = video.play();
+    if (intento && intento.catch) intento.catch(function () {});
+  }
+
+  /* ----------------------------------------------------------------------
+     Hero: el <video> ya viene escrito en el HTML. Aquí solo insistimos,
+     por si el navegador no arrancó solo.
+     ---------------------------------------------------------------------- */
+  var heroVideo = document.getElementById('hero-video');
+
+  if (heroVideo) {
+    reproducir(heroVideo);
+    heroVideo.addEventListener('loadeddata', function () { reproducir(heroVideo); });
+    heroVideo.addEventListener('canplay', function () { reproducir(heroVideo); });
+
+    /* Al volver a la pestaña, algunos navegadores lo dejan pausado */
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) reproducir(heroVideo);
+    });
+
+    /* Si el navegador exige un gesto, el primer toque lo arranca */
+    ['pointerdown', 'touchstart', 'keydown'].forEach(function (evento) {
+      document.addEventListener(evento, function arranca() {
+        reproducir(heroVideo);
+        document.removeEventListener(evento, arranca);
+      }, { once: true, passive: true });
+    });
+  }
 
   /* ----------------------------------------------------------------------
      Utilidades de contenido
@@ -34,11 +72,15 @@
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
+      video.setAttribute('playsinline', '');          // iOS antiguos
+      video.setAttribute('webkit-playsinline', '');
       video.preload = 'metadata';
       if (opciones.controles) {
         video.controls = true;
         video.autoplay = true;
         video.muted = false;
+      } else {
+        video.autoplay = true;                        // sin controles a la vista
       }
       return video;
     }
@@ -51,38 +93,45 @@
   }
 
   /* ----------------------------------------------------------------------
-     Hero: vídeo de fondo
-     ---------------------------------------------------------------------- */
-  var heroVideo = document.getElementById('hero-video');
-
-  if (heroVideo && datos.hero && datos.hero.archivo) {
-    if (datos.hero.poster) heroVideo.poster = MEDIA + datos.hero.poster;
-    heroVideo.src = MEDIA + datos.hero.archivo;
-    heroVideo.muted = true;                 // sin esto, algunos navegadores no arrancan
-    var reproduccion = heroVideo.play();
-    if (reproduccion && reproduccion.catch) reproduccion.catch(function () {});
-  }
-
-  /* ----------------------------------------------------------------------
      Sobre mí: la foto vertical
      ---------------------------------------------------------------------- */
   var contenedorFoto = document.getElementById('about-foto');
-
   if (contenedorFoto) {
     contenedorFoto.appendChild(crearMedia(datos.sobreMi, { clasePlaceholder: 'ph--portrait' }));
+  }
+
+  /* ----------------------------------------------------------------------
+     Marcas: huecos a la espera de logos
+     ---------------------------------------------------------------------- */
+  var filaMarcas = document.getElementById('brands-row');
+
+  if (filaMarcas) {
+    (datos.marcas || []).forEach(function (marca) {
+      var hueco = document.createElement('div');
+      hueco.className = 'brand';
+      if (marca.archivo) {
+        var logo = document.createElement('img');
+        logo.src = MEDIA + marca.archivo;
+        logo.alt = marca.nombre || '';
+        logo.loading = 'lazy';
+        hueco.appendChild(logo);
+      } else {
+        hueco.textContent = marca.nombre || '';
+      }
+      filaMarcas.appendChild(hueco);
+    });
   }
 
   /* ----------------------------------------------------------------------
      UGC Content: la imagen con los stickers, entera
      ---------------------------------------------------------------------- */
   var contenedorCollage = document.getElementById('collage-imagen');
-
   if (contenedorCollage) {
     contenedorCollage.appendChild(crearMedia(datos.collage, { clasePlaceholder: 'ph--wide' }));
   }
 
   /* ----------------------------------------------------------------------
-     Galería de vídeos
+     Selected clips
      ---------------------------------------------------------------------- */
   var rejilla = document.getElementById('gallery-grid');
   var galeria = datos.galeria || [];
@@ -94,7 +143,7 @@
       tarjeta.dataset.index = String(i);
       tarjeta.tabIndex = 0;
       tarjeta.setAttribute('role', 'button');
-      tarjeta.setAttribute('aria-label', 'Abrir ' + (item.etiqueta || 'contenido'));
+      tarjeta.setAttribute('aria-label', 'Abrir ' + (item.etiqueta || 'clip'));
 
       var media = document.createElement('div');
       media.className = 'card__media';
@@ -112,54 +161,31 @@
 
   var tarjetas = document.querySelectorAll('.card');
 
-  /* Los vídeos de la cuadrícula se reproducen al pasar el ratón */
-  tarjetas.forEach(function (tarjeta) {
-    var video = tarjeta.querySelector('video');
-    if (!video) return;
-    tarjeta.addEventListener('mouseenter', function () {
-      var p = video.play();
-      if (p && p.catch) p.catch(function () {});
-    });
-    tarjeta.addEventListener('mouseleave', function () {
-      video.pause();
-      video.currentTime = 0;
-    });
-  });
-
   /* ----------------------------------------------------------------------
-     Fotos: carrusel continuo
-     La pista se duplica para que el bucle no tenga costura. El clon queda
-     oculto para los lectores de pantalla.
+     Los clips se reproducen solo mientras están en pantalla. Fuera de ella
+     se pausan: seis vídeos a la vez consumen batería para nada.
      ---------------------------------------------------------------------- */
-  var marquee = document.getElementById('marquee');
-  var fotos = datos.fotos || [];
+  var videosClips = document.querySelectorAll('.card__media video');
 
-  if (marquee && fotos.length) {
-    var pista = document.createElement('div');
-    pista.className = 'marquee__track';
+  if ('IntersectionObserver' in window) {
+    var vigilante = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        var video = entrada.target;
+        if (entrada.isIntersecting) {
+          reproducir(video);
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.25 });
 
-    fotos.forEach(function (foto) {
-      var item = document.createElement('div');
-      item.className = 'marquee__item';
-      item.appendChild(crearMedia(foto, { clasePlaceholder: 'ph--portrait' }));
-      pista.appendChild(item);
-    });
-
-    var clon = pista.cloneNode(true);
-    clon.classList.add('marquee__track--clon');
-    clon.setAttribute('aria-hidden', 'true');
-
-    marquee.appendChild(pista);
-    marquee.appendChild(clon);
-
-    /* Más fotos, más recorrido: así la velocidad se mantiene constante */
-    var segundos = fotos.length * 9;
-    pista.style.animationDuration = segundos + 's';
-    clon.style.animationDuration = segundos + 's';
+    videosClips.forEach(function (video) { vigilante.observe(video); });
+  } else {
+    videosClips.forEach(reproducir);
   }
 
   /* ----------------------------------------------------------------------
-     Lightbox: abre la tarjeta en grande (los vídeos, con sonido y controles)
+     Lightbox: el clip en grande y con sonido
      ---------------------------------------------------------------------- */
   var lightbox = document.getElementById('lightbox');
   var lightboxMedia = document.getElementById('lightbox-media');
@@ -210,6 +236,37 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') cerrarLightbox();
   });
+
+  /* ----------------------------------------------------------------------
+     Fotos: carrusel continuo. La pista se duplica para que el bucle no
+     tenga costura; el clon queda oculto para los lectores de pantalla.
+     ---------------------------------------------------------------------- */
+  var marquee = document.getElementById('marquee');
+  var fotos = datos.fotos || [];
+
+  if (marquee && fotos.length) {
+    var pista = document.createElement('div');
+    pista.className = 'marquee__track';
+
+    fotos.forEach(function (foto) {
+      var item = document.createElement('div');
+      item.className = 'marquee__item';
+      item.appendChild(crearMedia(foto, { clasePlaceholder: 'ph--portrait' }));
+      pista.appendChild(item);
+    });
+
+    var clon = pista.cloneNode(true);
+    clon.classList.add('marquee__track--clon');
+    clon.setAttribute('aria-hidden', 'true');
+
+    marquee.appendChild(pista);
+    marquee.appendChild(clon);
+
+    /* Más fotos, más recorrido: así la velocidad se mantiene constante */
+    var segundos = fotos.length * 9;
+    pista.style.animationDuration = segundos + 's';
+    clon.style.animationDuration = segundos + 's';
+  }
 
   /* ----------------------------------------------------------------------
      Formulario: FormSubmit necesita una URL absoluta en _next, y la web
