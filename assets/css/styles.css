@@ -23,6 +23,12 @@
   --shadow-lg: 0 30px 70px rgba(44, 66, 87, .18);
 
   --ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* Aire vertical: un único valor para todas las secciones, así no hay
+     paddings sueltos por ahí que se sumen sin querer. */
+  --aire: clamp(3rem, 8vw, 6rem);
+  --aire-titulo: .35rem;   /* del título a su subtítulo */
+  --aire-contenido: 2rem;  /* del subtítulo al contenido */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -50,17 +56,20 @@ p { margin: 0 0 1.2em; }
 
 .container { width: min(100% - 96px, var(--maxw)); margin-inline: auto; }
 
-.section { padding: 180px 0; }
+.section { padding: var(--aire) 0; }
 
 /* Antetítulo pequeño en mayúsculas, el recurso que ordena toda la página */
 .eyebrow {
-  margin: 0 0 18px;
+  margin: 0;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--azul-titulo);
 }
+
+/* El antetítulo va pegado al título, no separado */
+.eyebrow { margin-bottom: .5rem; }
 
 .eyebrow--centrado { text-align: center; }
 
@@ -239,18 +248,18 @@ p { margin: 0 0 1.2em; }
 .about__grid {
   display: grid;
   grid-template-columns: 1fr minmax(320px, 440px);
-  gap: 120px;
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
 
 .about__text p { max-width: 54ch; }
-.about__text .section__title { margin-bottom: 30px; }
+.about__text .section__title { margin-bottom: 1.25rem; }
 
 .about__datos {
   display: flex;
   gap: 48px;
-  margin: 40px 0 0;
-  padding: 26px 0 0;
+  margin: 2rem 0 0;
+  padding: 1.5rem 0 0;
   list-style: none;
   border-top: 1px solid rgba(47, 74, 122, .18);
 }
@@ -289,15 +298,15 @@ p { margin: 0 0 1.2em; }
 }
 
 /* --------------------------------------------------------------------------
-   3. SELECTED CLIPS
+   3. VÍDEOS UGC
    -------------------------------------------------------------------------- */
-.clips { background: var(--butter); }
-.clips__head { margin-bottom: 84px; }
+.videos { background: var(--butter); }
+.videos__head { margin-bottom: var(--aire-contenido); }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 80px 60px;
+  gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 3.5rem);
   width: min(100% - 96px, 1120px);
   margin-inline: auto;
 }
@@ -392,12 +401,12 @@ p { margin: 0 0 1.2em; }
 /* --------------------------------------------------------------------------
    4. FOTOGRAFÍA — dos filas que se cruzan
    -------------------------------------------------------------------------- */
-.photos { padding: 170px 0; background: var(--butter); overflow: hidden; }
-.photos__head { margin-bottom: 60px; }
+.photos { padding: var(--aire) 0; background: var(--butter); overflow: hidden; }
+.photos__head { margin-bottom: var(--aire-contenido); }
 
 .section__sub,
 .photos__sub {
-  margin: 14px 0 0;
+  margin: var(--aire-titulo) 0 0;
   font-size: clamp(15px, 1.3vw, 20px);
   font-weight: 300;
   letter-spacing: .04em;
@@ -461,7 +470,7 @@ p { margin: 0 0 1.2em; }
 .contact__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
   align-items: start;
 }
 
@@ -475,16 +484,16 @@ p { margin: 0 0 1.2em; }
 }
 
 .contact__script {
-  margin: 12px 0 0;
+  margin: var(--aire-titulo) 0 0;
   font-size: clamp(17px, 1.5vw, 22px);
   font-weight: 400;
   color: var(--ink);
 }
 
-.contact__lead { max-width: 44ch; margin-top: 22px; }
+.contact__lead { max-width: 44ch; margin-top: var(--aire-contenido); }
 
 /* El correo es la acción principal: un bloque grande, no un enlace más */
-.contacto__destacado { margin-top: 34px; }
+.contacto__destacado { margin-top: var(--aire-contenido); }
 
 .mail {
   display: block;
@@ -623,7 +632,7 @@ p { margin: 0 0 1.2em; }
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
-.footer { padding: 64px 24px; text-align: center; background: var(--ink); color: var(--card); }
+.footer { padding: clamp(2.5rem, 5vw, 4rem) 24px; text-align: center; background: var(--ink); color: var(--card); }
 .footer__name { color: var(--baby); }
 .footer p { margin: 0; }
 .footer__name { font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
@@ -661,14 +670,12 @@ p { margin: 0 0 1.2em; }
   .container { width: min(100% - 56px, var(--maxw)); }
   .nav, .hero__content { width: calc(100% - 56px); }
   .nav__menu a { letter-spacing: .18em; }
-  .section { padding: 130px 0; }
   .about__grid { gap: 70px; grid-template-columns: 1fr minmax(280px, 380px); }
-  .grid { width: calc(100% - 56px); gap: 60px 40px; }
+  .grid { width: calc(100% - 56px); }
 }
 
 @media (max-width: 900px) {
   body { font-size: 17px; }
-  .section { padding: 100px 0; }
 
   .nav__toggle { display: flex; }
 
@@ -698,7 +705,6 @@ p { margin: 0 0 1.2em; }
   .about__media { max-width: 420px; }
   .about__datos { gap: 30px; }
 
-  .photos { padding: 100px 0; }
   .marquee__item { width: 240px; }
 
   .contact__grid { grid-template-columns: 1fr; gap: 48px; }
@@ -708,7 +714,6 @@ p { margin: 0 0 1.2em; }
 @media (max-width: 620px) {
   .container { width: calc(100% - 32px); }
   .nav, .hero__content { width: calc(100% - 32px); }
-  .section { padding: 80px 0; }
 
   .hero__content { padding-bottom: 92px; }
   .hero__tagline { letter-spacing: .28em; }
@@ -716,7 +721,7 @@ p { margin: 0 0 1.2em; }
   .about__datos { flex-wrap: wrap; gap: 22px 34px; }
 
   /* Una sola columna */
-  .grid { grid-template-columns: 1fr; width: calc(100% - 32px); gap: 52px; max-width: 360px; }
+  .grid { grid-template-columns: 1fr; width: calc(100% - 32px); max-width: 360px; }
 
 
   .marquee__item { width: 200px; }

@@ -101,7 +101,7 @@
   }
 
   /* ----------------------------------------------------------------------
-     Selected clips
+     Vídeos UGC
      ---------------------------------------------------------------------- */
   var rejilla = document.getElementById('gallery-grid');
   var galeria = datos.galeria || [];
@@ -113,7 +113,7 @@
       tarjeta.dataset.index = String(i);
       tarjeta.tabIndex = 0;
       tarjeta.setAttribute('role', 'button');
-      tarjeta.setAttribute('aria-label', 'Abrir ' + (item.etiqueta || 'clip'));
+      tarjeta.setAttribute('aria-label', 'Abrir ' + (item.etiqueta || 'vídeo'));
 
       var media = document.createElement('div');
       media.className = 'card__media';
@@ -132,10 +132,10 @@
   var tarjetas = document.querySelectorAll('.card');
 
   /* ----------------------------------------------------------------------
-     Los clips se reproducen solo mientras están en pantalla. Fuera de ella
+     Los vídeos se reproducen solo mientras están en pantalla. Fuera de ella
      se pausan: seis vídeos a la vez consumen batería para nada.
      ---------------------------------------------------------------------- */
-  var videosClips = document.querySelectorAll('.card__media video');
+  var videosUGC = document.querySelectorAll('.card__media video');
 
   if ('IntersectionObserver' in window) {
     var vigilante = new IntersectionObserver(function (entradas) {
@@ -149,13 +149,13 @@
       });
     }, { threshold: 0.25 });
 
-    videosClips.forEach(function (video) { vigilante.observe(video); });
+    videosUGC.forEach(function (video) { vigilante.observe(video); });
   } else {
-    videosClips.forEach(reproducir);
+    videosUGC.forEach(reproducir);
   }
 
   /* ----------------------------------------------------------------------
-     Lightbox: el clip en grande y con sonido
+     Lightbox: el vídeo en grande y con sonido
      ---------------------------------------------------------------------- */
   var lightbox = document.getElementById('lightbox');
   var lightboxMedia = document.getElementById('lightbox-media');
