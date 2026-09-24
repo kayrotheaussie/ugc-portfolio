@@ -77,8 +77,9 @@
       video.preload = 'metadata';
       if (opciones.controles) {
         video.controls = true;
-        video.autoplay = true;
-        video.muted = false;
+        video.muted = false;      // en el lightbox sí queremos oírlo
+        video.volume = 1;
+        video.preload = 'auto';
       } else {
         video.autoplay = true;                        // sin controles a la vista
       }
@@ -169,8 +170,18 @@
 
     ultimoFoco = tarjeta;
     lightboxMedia.innerHTML = '';
-    lightboxMedia.appendChild(crearMedia(item, { clasePlaceholder: 'ph--card', controles: true, sinLazy: true }));
+    var medio = crearMedia(item, { clasePlaceholder: 'ph--card', controles: true, sinLazy: true });
+    lightboxMedia.appendChild(medio);
     lightboxLabel.textContent = item.etiqueta || '';
+
+    /* Arrancamos con sonido desde el propio clic, que es lo que los
+       navegadores exigen para dejar sonar un vídeo. Si aun así lo bloquean,
+       lo dejamos pausado PERO con sonido: al darle al play se oye. Silenciarlo
+       aquí sería peor, porque parecería que el vídeo no tiene audio. */
+    if (medio.tagName === 'VIDEO') {
+      var conSonido = medio.play();
+      if (conSonido && conSonido.catch) conSonido.catch(function () {});
+    }
 
     lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
