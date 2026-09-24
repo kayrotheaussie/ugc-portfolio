@@ -25,6 +25,12 @@ etiqueta. Puedes ir rellenando de uno en uno.
 
 No hace falta decir si es foto o vídeo: se sabe por la extensión.
 
+## Si cambias un archivo sin cambiarle el nombre
+
+Sube el número de `version` que hay arriba del todo en `contenido.js` (vale la
+fecha y hora del momento). Sin eso, el navegador seguirá usando la copia que ya
+tenía guardada y parecerá que el cambio no se ha subido.
+
 ## Qué va en cada sitio
 
 | En `contenido.js` | Qué es | Formato |
@@ -61,6 +67,16 @@ convirtieron así:
 ffmpeg -i original.mov -map 0:v:0 -map 0:a:0 -map_metadata -1 \
   -vf "scale=-2:min(1280\,ih)" -c:v libx264 -preset slow -crf 26 \
   -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart video.mp4
+```
+
+Todos los vídeos están nivelados a **-16 LUFS**, que es el estándar de web,
+para que no haya saltos de volumen al pasar de uno a otro:
+
+```bash
+# Primero mide, y con esos valores aplica la corrección (el vídeo se copia tal cual)
+ffmpeg -i video.mp4 -af loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json -f null /dev/null
+ffmpeg -i video.mp4 -af "loudnorm=I=-16:TP=-1.5:LRA=11:measured_I=...:measured_TP=...:\
+  measured_LRA=...:measured_thresh=...:linear=true" -c:v copy -c:a aac -b:a 96k salida.mp4
 ```
 
 **Ojo con `-an`**: esa opción borra la pista de audio. Sirve para el vídeo del
