@@ -3,6 +3,20 @@
    Escritorio primero; adaptaciones al final, en RESPONSIVE.
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Fuente del nombre del hero.
+   Si assets/fonts/advercase.woff2 no existe, el navegador ignora esta regla
+   y cae en Outfit, que es la alternativa. Ver assets/fonts/LEEME.md
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Advercase';
+  src: url('../fonts/advercase.woff2') format('woff2'),
+       url('../fonts/advercase.woff')  format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --butter: #FFF3C6;        /* amarillo pastel: fondo principal */
   --butter-soft: #FFF9E4;   /* el mismo, más claro, para alternar bloques */
@@ -11,6 +25,7 @@
   --sky-text: #4A6FA5;      /* azul medio legible (4,6:1 sobre el fondo) */
   --navy: #2F4A7A;          /* azul intenso: textos y botones */
 
+  --font-name:    'Advercase', 'Outfit', sans-serif;  /* solo el nombre del hero */
   --font-script:  'Yellowtail', cursive;
   --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
   --font-body:    'Work Sans', system-ui, sans-serif;
@@ -100,7 +115,6 @@ p { margin: 0 0 1.2em; }
 
 .ph--portrait { aspect-ratio: 3 / 4;  height: auto; border-radius: var(--radius); }
 .ph--card     { aspect-ratio: 9 / 16; height: auto; border: none; border-radius: 0; }
-.ph--wide     { aspect-ratio: 16 / 9; height: auto; border-radius: var(--radius); }
 
 /* --------------------------------------------------------------------------
    1. HERO
@@ -188,16 +202,15 @@ p { margin: 0 0 1.2em; }
   padding: 40px 0 110px;
 }
 
-/* El nombre, en caligráfica y enorme */
+/* El nombre, enorme */
 .hero__name {
-  font-family: var(--font-script);
+  font-family: var(--font-name);
   font-weight: 400;
-  font-size: clamp(56px, 11.5vw, 210px);
-  line-height: 1.02;
-  letter-spacing: -.01em;
+  font-size: clamp(38px, 8.4vw, 148px);
+  line-height: 1.04;
+  letter-spacing: -.02em;
   color: var(--card);
   text-shadow: 0 16px 46px rgba(22, 34, 56, .45);
-  padding-bottom: .08em;   /* que no se corten los rabos de la caligrafía */
 }
 
 .hero__tagline {
@@ -293,41 +306,7 @@ p { margin: 0 0 1.2em; }
 }
 
 /* --------------------------------------------------------------------------
-   3. MARCAS
-   -------------------------------------------------------------------------- */
-.brands {
-  padding: 90px 0;
-  background: var(--butter-soft);
-  border-block: 1px solid rgba(47, 74, 122, .1);
-}
-
-.brands__row {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 24px;
-  margin-top: 8px;
-}
-
-/* Cada hueco espera un logo: sustituir por <img> en contenido.js */
-.brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 5 / 3;
-  padding: 14px;
-  font-size: 12px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--sky-text);
-  border: 1px dashed rgba(47, 74, 122, .28);
-  border-radius: var(--radius-sm);
-}
-
-.brand > img { max-height: 100%; width: auto; object-fit: contain; }
-
-/* --------------------------------------------------------------------------
-   4. SELECTED CLIPS
+   3. SELECTED CLIPS
    -------------------------------------------------------------------------- */
 .clips { background: var(--butter); }
 .clips__head { margin-bottom: 84px; }
@@ -431,42 +410,18 @@ p { margin: 0 0 1.2em; }
 }
 
 /* --------------------------------------------------------------------------
-   5. UGC CONTENT (imagen de stickers)
-   -------------------------------------------------------------------------- */
-.collage {
-  padding: 130px 0;
-  text-align: center;
-  background: var(--butter-soft);
-}
-
-.collage__word {
-  font-family: var(--font-display);
-  font-size: clamp(56px, 9vw, 160px);
-  font-weight: 400;
-  line-height: .94;
-  letter-spacing: .01em;
-  text-transform: uppercase;
-  color: var(--navy);
-}
-
-.collage__tagline {
-  margin: 16px 0 0;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: .4em;
-  text-transform: uppercase;
-  color: var(--sky-text);
-}
-
-/* La imagen va entera, sin recortar */
-.collage__imagen { width: min(100% - 96px, 1000px); margin: 56px auto 0; }
-.collage__imagen > img { width: 100%; height: auto; }
-
-/* --------------------------------------------------------------------------
-   6. FOTOS — carrusel continuo
+   4. FOTOGRAFÍA — dos filas que se cruzan
    -------------------------------------------------------------------------- */
 .photos { padding: 170px 0; background: var(--butter); overflow: hidden; }
-.photos__head { margin-bottom: 70px; }
+.photos__head { margin-bottom: 60px; }
+
+.photos__sub {
+  margin: 14px 0 0;
+  font-size: clamp(15px, 1.3vw, 20px);
+  font-weight: 300;
+  letter-spacing: .04em;
+  color: var(--sky-text);
+}
 
 .marquee {
   position: relative;
@@ -476,25 +431,38 @@ p { margin: 0 0 1.2em; }
           mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
+.marquee + .marquee { margin-top: 32px; }
+
 /* Dos pistas idénticas en fila: cuando la primera termina, la segunda ya está
-   en su sitio, así el movimiento no tiene costura. */
+   en su sitio, así el bucle no tiene costura. */
 .marquee__track {
   display: flex;
   flex-shrink: 0;
   gap: 32px;
   padding-right: 32px;
-  animation: marquee 90s linear infinite;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Fila de arriba hacia la izquierda, fila de abajo hacia la derecha */
+.marquee--izq .marquee__track { animation-name: marquee-izq; }
+.marquee--der .marquee__track { animation-name: marquee-der; }
+
+@keyframes marquee-izq {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes marquee-der {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
 }
 
 .marquee:hover .marquee__track,
 .marquee:focus-within .marquee__track { animation-play-state: paused; }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
-
-.marquee__item { flex: 0 0 auto; width: 320px; }
+.marquee__item { flex: 0 0 auto; width: 300px; }
 
 .marquee__item > img {
   width: 100%;
@@ -505,7 +473,7 @@ p { margin: 0 0 1.2em; }
 }
 
 /* --------------------------------------------------------------------------
-   7. CONTACTO
+   5. CONTACTO
    -------------------------------------------------------------------------- */
 .contact { background: var(--butter-soft); }
 
@@ -644,9 +612,12 @@ p { margin: 0 0 1.2em; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero__arrow { animation: none; }
 
-  /* Sin movimiento automático: el carrusel se recorre a mano */
+  /* Sin movimiento automático: el carrusel se recorre a mano.
+     Hace falta repetir los selectores de dirección: tienen más
+     especificidad que .marquee__track a secas y si no, ganan ellos. */
   .marquee { overflow-x: auto; }
-  .marquee__track { animation: none; }
+  .marquee--izq .marquee__track,
+  .marquee--der .marquee__track { animation: none; }
   .marquee__track--clon { display: none; }
 }
 
@@ -660,7 +631,6 @@ p { margin: 0 0 1.2em; }
   .section { padding: 130px 0; }
   .about__grid { gap: 70px; grid-template-columns: 1fr minmax(280px, 380px); }
   .grid { width: calc(100% - 56px); gap: 60px 40px; }
-  .brands__row { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 900px) {
@@ -692,9 +662,6 @@ p { margin: 0 0 1.2em; }
   .about__media { max-width: 420px; }
   .about__datos { gap: 30px; }
 
-  .collage { padding: 90px 0; }
-  .collage__imagen { width: calc(100% - 48px); margin-top: 40px; }
-
   .photos { padding: 100px 0; }
   .marquee__item { width: 240px; }
 
@@ -714,7 +681,6 @@ p { margin: 0 0 1.2em; }
   /* Una sola columna */
   .grid { grid-template-columns: 1fr; width: calc(100% - 32px); gap: 52px; max-width: 360px; }
 
-  .brands__row { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
   .marquee__item { width: 200px; }
   .marquee__track { gap: 20px; padding-right: 20px; }

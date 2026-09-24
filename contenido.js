@@ -20,31 +20,11 @@ const CONTENIDO = {
      si dependiera del JavaScript y algo fallara, la portada se quedaría
      negra. Para cambiarlo, sustituye assets/media/hero.mp4 y su póster.   */
 
-  /* --- MARCAS: los logos de la franja ------------------------------------
-     Deja "archivo" vacío y sale el hueco de puntos con el texto.          */
-  marcas: [
-    { nombre: "Tu marca aquí", archivo: "" },
-    { nombre: "Tu marca aquí", archivo: "" },
-    { nombre: "Tu marca aquí", archivo: "" },
-    { nombre: "Tu marca aquí", archivo: "" },
-    { nombre: "Tu marca aquí", archivo: "" },
-    { nombre: "Tu marca aquí", archivo: "" }
-  ],
-
   /* --- SOBRE MÍ: la foto vertical (3:4) ---------------------------------- */
   sobreMi: {
     archivo: "sobre-mi-humana.webp",
     etiqueta: "Foto Kayro + humana",
     alt: "Kayro con su humana"
-  },
-
-  /* --- UGC CONTENT: la imagen con los stickers de Kayro juntos -----------
-     Copia la imagen en assets/media/ y escribe aquí su nombre.
-     Se muestra entera y a lo ancho, sin recortar.                         */
-  collage: {
-    archivo: "",
-    etiqueta: "Imagen con los stickers de Kayro",
-    alt: "Stickers de Kayro"
   },
 
   /* --- GALERÍA DE VÍDEOS -------------------------------------------------
@@ -60,7 +40,9 @@ const CONTENIDO = {
     { archivo: "video-02.mp4", poster: "video-02.jpg", etiqueta: "Humor para TikTok" }
   ],
 
-  /* --- FOTOS: el carrusel que se desliza solo ----------------------------
+  /* --- FOTOGRAFÍA --------------------------------------------------------
+     Se reparten solas entre las dos filas: las impares (1ª, 3ª, 5ª...) a la
+     fila de arriba y las pares a la de abajo. Añade las que quieras aquí.
      Las cuatro primeras son las destacadas (13, 20, 17, 16).
      21.JPG no está: era idéntica a 20.JPG.                                */
   fotos: [
