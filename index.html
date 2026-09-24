@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Outfit:wght@400;500&family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -42,8 +42,16 @@
     </nav>
 
     <div class="hero__content">
-      <h1 class="hero__name">Kayro the Aussie</h1>
-      <p class="hero__tagline">UGC Creator <span aria-hidden="true">•</span> Barcelona</p>
+      <p class="hero__pre">Puppy Content Creator</p>
+
+      <!-- Dos capas superpuestas: "The Aussie" se apoya sobre la parte baja
+           de "Kayro" y lleva un contorno del color del fondo para recortarlo. -->
+      <h1 class="hero__title">
+        <span class="hero__kayro">Kayro</span>
+        <span class="hero__aussie" aria-hidden="true">The Aussie</span>
+        <span class="visually-hidden">The Aussie</span>
+      </h1>
+
     </div>
 
     <a class="hero__scroll" href="#sobre-mi">
@@ -64,22 +72,29 @@
           <p class="eyebrow">Sobre mí</p>
           <h2 class="section__title">El perro más cool<br>de tu FYP</h2>
 
-          <!-- TEXTO PROVISIONAL: sustituir por el texto del PDF (Kayro.pdf) -->
           <p>
-            ¡Hola! Soy Kayro, un pastor australiano de cuatro meses y medio con muchísima
-            energía y una cámara siempre cerca. Desde que llegué a casa me he convertido en
-            el protagonista de cada vídeo: pruebo juguetes, destrozo cajas de unboxing con
-            estilo y pongo caras que funcionan muy bien en TikTok.
+            ¡Hola! Soy Kayro, un pastor australiano de cinco meses con muchísima energía
+            y una cámara siempre cerca. Me encanta jugar, descubrir cosas nuevas, chapotear
+            en el agua, viajar y, sobre todo, meterme donde nadie me ha llamado. 😂
           </p>
           <p>
-            Trabajo con marcas pet friendly creando contenido UGC natural, divertido y sin
-            postureo. Nada de anuncios aburridos: vídeos que parecen de un amigo, no de una
-            marca. Mi humana se encarga de grabar, editar y de que todo llegue a tiempo;
-            yo pongo la carita y el entusiasmo.
+            Desde que llegué a casa me he convertido en el protagonista de cada vídeo:
+            pruebo juguetes, destrozo cajas de unboxing con estilo y pongo caras que
+            funcionan muy bien en TikTok. Mi humana es especialista en Marketing y Creación
+            de Contenido, así que juntos hacemos el match perfecto: yo pongo la cara, la
+            personalidad y las ocurrencias; ella lo convierte todo en contenido que conecta.
+          </p>
+          <p>
+            Creamos UGC, vídeos y fotos para marcas pet friendly de forma natural, divertida,
+            sin postureo y muy… Kayro. Nada de anuncios aburridos: contenido que parece de un
+            amigo, no de una marca.
+          </p>
+          <p>
+            Desliza para ver mis trastadas y mis unboxings. Un lametón 🐶✨
           </p>
 
           <ul class="about__datos">
-            <li><strong>4,5</strong><span>meses</span></li>
+            <li><strong>5</strong><span>meses</span></li>
             <li><strong>Barcelona</strong><span>y alrededores</span></li>
           </ul>
         </div>
@@ -98,8 +113,8 @@
          ============================================================ -->
     <section class="clips section" id="clips">
       <div class="container clips__head reveal">
-        <p class="eyebrow">Portfolio</p>
-        <h2 class="section__title">Selected clips</h2>
+        <h2 class="section__title">Vídeos UGC</h2>
+        <p class="section__sub">Creación de contenido</p>
       </div>
 
       <!-- Las tarjetas salen de contenido.js -> galeria -->
@@ -128,17 +143,17 @@
 
         <div class="contact__intro reveal">
           <p class="eyebrow">Contacto</p>
-          <h2 class="contact__title">Got a brief?</h2>
-          <p class="contact__script">Vamos a conocernos</p>
+          <h2 class="contact__title">¿Hablamos?</h2>
+          <p class="contact__script">Si tu marca quiere contenido de valor, escríbenos.</p>
           <p class="contact__lead">
-            Si tu marca es pet friendly y quiere contenido con un cachorro que de verdad
-            disfruta grabando, escríbeme. Respondo rápido (mi humana, en realidad).
+            Somos rápidos respondiendo y fáciles de trabajar: cuéntanos el producto, el
+            formato y las fechas, y te decimos cómo lo haríamos.
           </p>
 
           <ul class="services">
             <li>UGC</li>
             <li>Contenido orgánico</li>
-            <li>Paid ads</li>
+            <li>Publicidad de pago</li>
             <li>Fotografía de mascotas</li>
             <li>Fotografía de producto</li>
           </ul>
@@ -184,11 +199,11 @@
           <div class="form__row">
             <label for="mensaje">Mensaje</label>
             <textarea id="mensaje" name="mensaje" required minlength="10"
-                      placeholder="Cuéntame qué necesitas: producto, formato, fechas..."></textarea>
+                      placeholder="Cuéntanos qué necesitas: producto, formato, fechas..."></textarea>
           </div>
 
           <button class="btn btn--primary btn--block" type="submit">Enviar</button>
-          <p class="form__nota">Te respondo en 24-48 h.</p>
+          <p class="form__nota">Te respondemos en 24-48 h.</p>
         </form>
 
       </div>
