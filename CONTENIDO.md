@@ -1,0 +1,82 @@
+# Cómo meter tus fotos y vídeos en la web
+
+Hay **dos sitios** y nada más: la carpeta donde van los archivos y el archivo
+donde escribes cómo se llaman.
+
+```
+assets/media/     <- aquí copias tus fotos y vídeos
+contenido.js      <- aquí escribes el nombre de cada archivo
+```
+
+## Los 3 pasos
+
+1. Copia el archivo dentro de `assets/media/`.
+2. Abre `contenido.js` y escribe el nombre entre las comillas de `archivo`.
+3. Recarga la web. Ya está.
+
+Si dejas `archivo: ""` vacío, en esa posición sale un recuadro de color con su
+etiqueta. Puedes ir rellenando de uno en uno.
+
+### Ejemplo
+
+```js
+{ archivo: "video-05.mp4", poster: "video-05.jpg", etiqueta: "Unboxing Dukier" },
+```
+
+No hace falta decir si es foto o vídeo: se sabe por la extensión.
+
+## Qué va en cada sitio
+
+| En `contenido.js` | Qué es | Formato |
+|---|---|---|
+| (el hero va en `index.html`, no aquí) | Vídeo de fondo de la portada | MP4 H.264 1080p, sin audio |
+| `marcas` | Los logos de la franja de marcas | PNG o SVG con fondo transparente |
+| `sobreMi` | La foto vertical de "Sobre mí" | Vertical 3:4, WebP |
+| `collage` | La imagen con los stickers de Kayro | PNG o WebP, se muestra entera |
+| `galeria` | Los vídeos de "Selected clips" | Vertical 9:16, MP4 + póster JPG |
+| `fotos` | Las fotos del carrusel | Vertical, WebP |
+
+En `galeria` y en `fotos` puedes **añadir o quitar** líneas libremente: la
+cuadrícula y el carrusel se rehacen solos. El carrusel ajusta su velocidad al
+número de fotos, así que no hay que tocar nada más.
+
+## El póster de los vídeos
+
+Es la imagen que se ve antes de darle al play. Si no pones `poster`, el vídeo
+se ve negro hasta que carga. Se saca del primer fotograma:
+
+```bash
+ffmpeg -i video.mp4 -frames:v 1 -q:v 6 video.jpg
+```
+
+## Antes de subir: comprime
+
+Los vídeos y las fotos del móvil son enormes. Los que ya están en la web se
+convirtieron así:
+
+```bash
+# Vídeo vertical a 720p, sin audio, listo para web
+ffmpeg -i original.mov -map 0:v:0 -an -map_metadata -1 \
+  -vf "scale=-2:min(1280\,ih)" -c:v libx264 -preset slow -crf 26 \
+  -pix_fmt yuv420p -movflags +faststart video.mp4
+```
+
+Referencias: cada vídeo de la galería **menos de 3 MB**, cada foto **menos de
+300 KB**, el vídeo del hero **menos de 4 MB**.
+
+Si te da pereza, súbeme los originales y te los dejo listos.
+
+## Muy importante: nada de `.mov`
+
+Los `.mov` del iPhone suelen venir en HEVC, que **Chrome y Firefox no
+reproducen**. Por eso el vídeo de la portada no se veía en ordenador. Todo lo
+que vaya a la web tiene que ser **MP4 H.264** (`-c:v libx264 -pix_fmt yuv420p`).
+
+## El formulario de contacto
+
+Usa [FormSubmit](https://formsubmit.co), que no necesita servidor. La primera
+vez que alguien envíe el formulario, FormSubmit mandará un correo de
+confirmación a `kayro.theaussie@gmail.com`: **hay que abrirlo y aceptarlo una
+vez**. A partir de ahí los mensajes llegan solos.
+
+Al enviar, la web redirige a `gracias.html`.

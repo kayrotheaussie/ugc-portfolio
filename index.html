@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kayro the Aussie — UGC Creator</title>
+  <meta name="description" content="Portfolio UGC de Kayro the Aussie, pastor australiano cachorro creador de contenido para marcas pet friendly en Barcelona." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       1. HERO
+       El vídeo va escrito aquí directamente, no desde JavaScript:
+       así se reproduce aunque el JS falle o tarde.
+       ============================================================ -->
+  <header class="hero" id="inicio">
+    <div class="hero__video-wrap">
+      <video class="hero__video" id="hero-video"
+             autoplay muted loop playsinline preload="metadata"
+             poster="assets/media/hero-poster.jpg">
+        <source src="assets/media/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#clips">Clips</a></li>
+        <li><a href="#fotos">Fotos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero__content">
+      <h1 class="hero__name">Kayro the Aussie</h1>
+      <p class="hero__tagline">UGC Creator <span aria-hidden="true">•</span> Barcelona</p>
+    </div>
+
+    <a class="hero__scroll" href="#sobre-mi">
+      <span>Scroll</span>
+      <span class="hero__arrow" aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         2. SOBRE MÍ
+         ============================================================ -->
+    <section class="about section" id="sobre-mi">
+      <div class="container about__grid">
+
+        <div class="about__text reveal">
+          <p class="eyebrow">Sobre mí</p>
+          <h2 class="section__title">El perro más cool<br>de tu FYP</h2>
+
+          <!-- TEXTO PROVISIONAL: sustituir por el texto del PDF (Kayro.pdf) -->
+          <p>
+            ¡Hola! Soy Kayro, un pastor australiano de cuatro meses y medio con muchísima
+            energía y una cámara siempre cerca. Desde que llegué a casa me he convertido en
+            el protagonista de cada vídeo: pruebo juguetes, destrozo cajas de unboxing con
+            estilo y pongo caras que funcionan muy bien en TikTok.
+          </p>
+          <p>
+            Trabajo con marcas pet friendly creando contenido UGC natural, divertido y sin
+            postureo. Nada de anuncios aburridos: vídeos que parecen de un amigo, no de una
+            marca. Mi humana se encarga de grabar, editar y de que todo llegue a tiempo;
+            yo pongo la carita y el entusiasmo.
+          </p>
+
+          <ul class="about__datos">
+            <li><strong>4,5</strong><span>meses</span></li>
+            <li><strong>Barcelona</strong><span>y alrededores</span></li>
+            <li><strong>9:16</strong><span>formato nativo</span></li>
+          </ul>
+        </div>
+
+        <div class="about__media reveal">
+          <!-- La foto sale de contenido.js -> sobreMi -->
+          <div class="about__foto" id="about-foto"></div>
+          <p class="about__pie">Esta es mi humana :)</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. MARCAS — huecos vacíos hasta tener los logos
+         ============================================================ -->
+    <section class="brands" aria-labelledby="titulo-marcas">
+      <div class="container">
+        <p class="eyebrow eyebrow--centrado" id="titulo-marcas">Marcas con las que he trabajado</p>
+        <!-- Los huecos salen de contenido.js -> marcas -->
+        <div class="brands__row" id="brands-row"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. SELECTED CLIPS
+         ============================================================ -->
+    <section class="clips section" id="clips">
+      <div class="container clips__head reveal">
+        <p class="eyebrow">Portfolio</p>
+        <h2 class="section__title">Selected clips</h2>
+      </div>
+
+      <!-- Las tarjetas salen de contenido.js -> galeria -->
+      <div class="grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- ============================================================
+         5. UGC CONTENT — la imagen con los stickers de Kayro
+         ============================================================ -->
+    <section class="collage" aria-labelledby="titulo-collage">
+      <div class="container">
+        <h2 class="collage__word" id="titulo-collage">UGC Content</h2>
+        <p class="collage__tagline">Puppy content creator</p>
+      </div>
+      <!-- La imagen sale de contenido.js -> collage -->
+      <div class="collage__imagen reveal" id="collage-imagen"></div>
+    </section>
+
+    <!-- ============================================================
+         6. FOTOS — carrusel continuo
+         ============================================================ -->
+    <section class="photos" id="fotos" aria-labelledby="titulo-fotos">
+      <div class="container photos__head reveal">
+        <p class="eyebrow">Fotografía</p>
+        <h2 class="section__title" id="titulo-fotos">Sesiones y producto</h2>
+      </div>
+      <!-- Las fotos salen de contenido.js -> fotos -->
+      <div class="marquee" id="marquee"></div>
+    </section>
+
+    <!-- ============================================================
+         7. CONTACTO
+         ============================================================ -->
+    <section class="contact section" id="contacto">
+      <div class="container contact__grid">
+
+        <div class="contact__intro reveal">
+          <p class="eyebrow">Contacto</p>
+          <h2 class="contact__title">Got a brief?</h2>
+          <p class="contact__script">Vamos a conocernos</p>
+          <p class="contact__lead">
+            Si tu marca es pet friendly y quiere contenido con un cachorro que de verdad
+            disfruta grabando, escríbeme. Respondo rápido (mi humana, en realidad).
+          </p>
+
+          <ul class="services">
+            <li>UGC</li>
+            <li>Contenido orgánico</li>
+            <li>Paid ads</li>
+            <li>Fotografía de mascotas</li>
+            <li>Fotografía de producto</li>
+          </ul>
+
+          <div class="contact__direct">
+            <a class="btn btn--ghost" href="mailto:kayro.theaussie@gmail.com">kayro.theaussie@gmail.com</a>
+            <a class="btn btn--ghost" href="https://instagram.com/kayro.theaussie" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn btn--ghost" href="https://tiktok.com/@kayro.theaussie" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
+
+        <!-- FormSubmit: web estática, sin backend. La primera vez que se envíe,
+             FormSubmit manda un email de confirmación que hay que aceptar. -->
+        <form class="form reveal" id="form-contacto"
+              action="https://formsubmit.co/kayro.theaussie@gmail.com"
+              method="POST">
+
+          <input type="hidden" name="_subject" value="Nueva marca interesada en Kayro">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" id="form-next" value="https://kayrotheaussie.github.io/ugc-portfolio/gracias.html">
+          <!-- Trampa para bots: si la rellenan, FormSubmit descarta el envío -->
+          <input type="text" name="_honey" class="form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form__row">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required minlength="2"
+                   autocomplete="name" placeholder="Tu nombre o el de la marca">
+          </div>
+
+          <div class="form__row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required
+                   autocomplete="email" placeholder="hola@tumarca.com">
+          </div>
+
+          <div class="form__row">
+            <label for="zona">Zona o ciudad</label>
+            <input type="text" id="zona" name="zona" required minlength="2"
+                   placeholder="Barcelona, Madrid, online...">
+          </div>
+
+          <div class="form__row">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" required minlength="10"
+                      placeholder="Cuéntame qué necesitas: producto, formato, fechas..."></textarea>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit">Enviar</button>
+          <p class="form__nota">Te respondo en 24-48 h.</p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__name">Kayro the Aussie</p>
+    <p class="footer__small">UGC Creator · Barcelona · &copy; <span id="year"></span></p>
+  </footer>
+
+  <!-- Los clips se abren aquí en grande, con sonido -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Clip ampliado" hidden>
+    <button class="lightbox__close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="lightbox__inner">
+      <div class="lightbox__media" id="lightbox-media"></div>
+      <p class="lightbox__label" id="lightbox-label"></p>
+    </div>
+  </div>
+
+  <script src="contenido.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
