@@ -31,7 +31,7 @@ No hace falta decir si es foto o vídeo: se sabe por la extensión.
 |---|---|---|
 | (el hero va en `index.html`, no aquí) | Vídeo de fondo de la portada | MP4 H.264 1080p, sin audio |
 | `sobreMi` | La foto vertical de "Sobre mí" | Vertical 3:4, WebP |
-| `galeria` | Los vídeos de "Vídeos UGC" | Vertical 9:16, MP4 + póster JPG |
+| `galeria` | Los vídeos de "Vídeos UGC" | Vertical 9:16, MP4 con audio + póster JPG |
 | `fotos` | Las fotos de "Fotografía" | Vertical, WebP |
 
 En `galeria` y en `fotos` puedes **añadir o quitar** líneas libremente: la
@@ -57,11 +57,15 @@ Los vídeos y las fotos del móvil son enormes. Los que ya están en la web se
 convirtieron así:
 
 ```bash
-# Vídeo vertical a 720p, sin audio, listo para web
-ffmpeg -i original.mov -map 0:v:0 -an -map_metadata -1 \
+# Vídeo vertical a 720p CON audio, listo para web
+ffmpeg -i original.mov -map 0:v:0 -map 0:a:0 -map_metadata -1 \
   -vf "scale=-2:min(1280\,ih)" -c:v libx264 -preset slow -crf 26 \
-  -pix_fmt yuv420p -movflags +faststart video.mp4
+  -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart video.mp4
 ```
+
+**Ojo con `-an`**: esa opción borra la pista de audio. Sirve para el vídeo del
+hero, que va en bucle y silenciado, pero **nunca** para los de la galería: se
+oyen al abrirlos en grande.
 
 Referencias: cada vídeo de la galería **menos de 3 MB**, cada foto **menos de
 300 KB**, el vídeo del hero **menos de 4 MB**.

@@ -62,6 +62,13 @@ H.264 1080p sin audio pesa 2,9 MB.
 Dura **2,2 segundos**, así que en bucle da un salto muy visible. Para que
 funcione bien haría falta un vídeo de 8-15 segundos.
 
+## El sonido de los vídeos
+
+Los vídeos de la cuadrícula van **silenciados**: los navegadores solo dejan que
+un vídeo arranque solo si no suena. Al pulsar uno se abre en grande **con
+sonido y controles**. Por eso los archivos de `galeria` tienen que conservar su
+pista de audio (el del hero no: va en bucle y mudo).
+
 ## Paleta y tipografías
 
 | | |
