@@ -13,7 +13,8 @@
   --blue: #4E9CCF;        /* azul intenso, detalles */
   --navy: #2E3A48;        /* azul marino suave, texto */
 
-  --font-display: 'Anton', 'Arial Black', sans-serif;
+  --font-display: 'Baloo 2', 'Trebuchet MS', sans-serif;
+  --display-weight: 800;
   --font-script: 'Allura', cursive;
   --font-body: 'DM Sans', system-ui, sans-serif;
 
@@ -49,6 +50,13 @@ a { color: inherit; text-decoration: none; }
 
 h1, h2, h3 { margin: 0; line-height: 1; }
 
+/* Todo lo que usa la display necesita su peso: Baloo 2 es variable */
+.section__title,
+.hero__name,
+.collage__word,
+.contact__title,
+.services__title { font-weight: var(--display-weight); }
+
 p { margin: 0 0 1.1em; }
 
 ::selection { background: var(--sky); color: var(--navy); }
@@ -68,8 +76,9 @@ p { margin: 0 0 1.1em; }
 
 .section__title {
   font-family: var(--font-display);
-  font-size: clamp(48px, 5vw, 86px);
-  letter-spacing: .5px;
+  font-size: clamp(42px, 4.4vw, 76px);
+  line-height: 1.05;
+  letter-spacing: 0;
   color: var(--blue);
   text-transform: none;
 }
@@ -241,18 +250,18 @@ p { margin: 0 0 1.1em; }
 .hero__name {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(76px, 11vw, 190px);
-  line-height: .84;
-  letter-spacing: 1px;
+  font-size: clamp(68px, 10.5vw, 180px);
+  line-height: .95;
+  letter-spacing: -1px;
   color: var(--warm-white);
   text-shadow: 0 14px 40px rgba(46, 58, 72, .45);
 }
 
 .hero__script {
   display: block;
-  font-size: clamp(52px, 7vw, 120px);
+  font-size: clamp(48px, 6.4vw, 112px);
   color: var(--warm-white);
-  margin-top: -.16em;
+  margin-top: -.3em;
   margin-left: .22em;
   text-shadow: 0 10px 30px rgba(46, 58, 72, .4);
 }
@@ -309,6 +318,16 @@ p { margin: 0 0 1.1em; }
 .about__media { position: relative; }
 
 .about__media .ph--portrait { box-shadow: var(--shadow-md); }
+
+/* La foto real hereda el mismo encuadre que el placeholder */
+.about__foto > img,
+.about__foto > video {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
 
 /* Notas tipo pegatina alrededor de la foto */
 .note {
@@ -378,9 +397,9 @@ p { margin: 0 0 1.1em; }
 
 .collage__word {
   font-family: var(--font-display);
-  font-size: clamp(90px, 15vw, 240px);
-  line-height: .9;
-  letter-spacing: 1px;
+  font-size: clamp(74px, 11.5vw, 196px);
+  line-height: 1;
+  letter-spacing: -2px;
   color: var(--blue);
 }
 
@@ -393,8 +412,15 @@ p { margin: 0 0 1.1em; }
   color: var(--navy);
 }
 
-/* Stickers: cada uno independiente, sustituir por PNG recortado */
+/* Stickers: cada uno independiente, salen de contenido.js */
 .sticker { position: absolute; z-index: 3; }
+
+/* El PNG recortado va suelto, sin caja: solo una sombra para despegarlo */
+.sticker > img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 22px rgba(46, 58, 72, .22));
+}
 .sticker--1 { width: 180px; top: 250px;   left: 4%;   transform: rotate(-8deg); }
 .sticker--2 { width: 145px; top: 96px;    left: 19%;  transform: rotate(6deg); }
 .sticker--3 { width: 160px; top: 74px;    right: 18%; transform: rotate(-5deg); }
@@ -515,6 +541,8 @@ p { margin: 0 0 1.1em; }
 }
 
 .lightbox__media > * { width: 100%; height: 100%; }
+.lightbox__media > video { object-fit: contain; background: var(--navy); }
+.lightbox__media > img { object-fit: cover; }
 
 .lightbox__label {
   padding: 16px 8px 20px;
@@ -563,9 +591,9 @@ p { margin: 0 0 1.1em; }
 
 .contact__title {
   font-family: var(--font-display);
-  font-size: clamp(64px, 8vw, 140px);
-  line-height: .92;
-  margin-top: -.08em;
+  font-size: clamp(54px, 6.6vw, 118px);
+  line-height: 1;
+  margin-top: -.04em;
   color: var(--navy);
 }
 
@@ -620,7 +648,7 @@ p { margin: 0 0 1.1em; }
 
 .services__title {
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 32px;
   color: var(--blue);
   margin-bottom: 18px;
 }

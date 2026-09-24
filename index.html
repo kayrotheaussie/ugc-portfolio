@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Allura&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Allura&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -63,10 +63,8 @@
       <div class="container about__grid">
 
         <div class="about__media reveal">
-          <!-- SUSTITUIR por: <img src="assets/media/kayro-humana.jpg" alt="Kayro con su humana"> -->
-          <div class="ph ph--portrait" data-slot="about-foto-principal">
-            Foto Kayro + humana
-          </div>
+          <!-- La foto sale de contenido.js -> sobreMi -->
+          <div class="about__foto" id="about-foto"></div>
 
           <p class="note note--1">Soy un pastor australiano de 4 meses y medio</p>
           <p class="note note--2">Soy juguetón y me encantan los premios. En serio, me vuelvo loco.</p>
@@ -113,11 +111,12 @@
         <p class="collage__tagline">Puppy content creator</p>
       </div>
 
-      <div class="sticker sticker--1"><span class="ph ph--sticker" data-slot="sticker-1">Sticker Kayro 1</span></div>
-      <div class="sticker sticker--2"><span class="ph ph--sticker" data-slot="sticker-2">Sticker Kayro 2</span></div>
-      <div class="sticker sticker--3"><span class="ph ph--sticker" data-slot="sticker-3">Sticker Kayro 3</span></div>
-      <div class="sticker sticker--4"><span class="ph ph--sticker" data-slot="sticker-4">Sticker Kayro 4</span></div>
-      <div class="sticker sticker--5"><span class="ph ph--sticker" data-slot="sticker-5">Sticker Kayro 5</span></div>
+      <!-- Los 5 stickers salen de contenido.js -> stickers -->
+      <div class="sticker sticker--1" id="sticker-1"></div>
+      <div class="sticker sticker--2" id="sticker-2"></div>
+      <div class="sticker sticker--3" id="sticker-3"></div>
+      <div class="sticker sticker--4" id="sticker-4"></div>
+      <div class="sticker sticker--5" id="sticker-5"></div>
     </section>
 
     <!-- ============================================================
@@ -130,73 +129,10 @@
           <p class="section__subtitle">Lo que he grabado últimamente</p>
         </header>
 
-        <div class="filters reveal" role="tablist" aria-label="Filtrar contenido por categoría">
-          <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">Todo</button>
-          <button class="filter" data-filter="unboxing" role="tab" aria-selected="false">Unboxing / Review</button>
-          <button class="filter" data-filter="humor" role="tab" aria-selected="false">Humor / TikTok</button>
-          <button class="filter" data-filter="producto" role="tab" aria-selected="false">Fotografía de producto</button>
-          <button class="filter" data-filter="organico" role="tab" aria-selected="false">Contenido orgánico</button>
-        </div>
+        <!-- Los filtros y las tarjetas salen de contenido.js -> categorias y galeria -->
+        <div class="filters reveal" id="gallery-filters" role="tablist" aria-label="Filtrar contenido por categoría"></div>
 
-        <div class="grid" id="gallery-grid">
-
-          <!-- Unboxing / Review -->
-          <figure class="card reveal" data-category="unboxing" tabindex="0" role="button" aria-label="Abrir Vídeo unboxing 1">
-            <div class="card__media"><div class="ph ph--card" data-slot="unboxing-1">Vídeo unboxing 1</div></div>
-            <figcaption class="card__label">Vídeo unboxing 1</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="unboxing" tabindex="0" role="button" aria-label="Abrir Vídeo unboxing 2">
-            <div class="card__media"><div class="ph ph--card" data-slot="unboxing-2">Vídeo unboxing 2</div></div>
-            <figcaption class="card__label">Vídeo unboxing 2</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="unboxing" tabindex="0" role="button" aria-label="Abrir Vídeo review 1">
-            <div class="card__media"><div class="ph ph--card" data-slot="unboxing-3">Vídeo review 1</div></div>
-            <figcaption class="card__label">Vídeo review 1</figcaption>
-          </figure>
-
-          <!-- Humor / TikTok -->
-          <figure class="card reveal" data-category="humor" tabindex="0" role="button" aria-label="Abrir TikTok humor 1">
-            <div class="card__media"><div class="ph ph--card" data-slot="humor-1">TikTok humor 1</div></div>
-            <figcaption class="card__label">TikTok humor 1</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="humor" tabindex="0" role="button" aria-label="Abrir TikTok humor 2">
-            <div class="card__media"><div class="ph ph--card" data-slot="humor-2">TikTok humor 2</div></div>
-            <figcaption class="card__label">TikTok humor 2</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="humor" tabindex="0" role="button" aria-label="Abrir TikTok humor 3">
-            <div class="card__media"><div class="ph ph--card" data-slot="humor-3">TikTok humor 3</div></div>
-            <figcaption class="card__label">TikTok humor 3</figcaption>
-          </figure>
-
-          <!-- Fotografía de producto -->
-          <figure class="card reveal" data-category="producto" tabindex="0" role="button" aria-label="Abrir Foto producto 1">
-            <div class="card__media"><div class="ph ph--card" data-slot="producto-1">Foto producto 1</div></div>
-            <figcaption class="card__label">Foto producto 1</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="producto" tabindex="0" role="button" aria-label="Abrir Foto producto 2">
-            <div class="card__media"><div class="ph ph--card" data-slot="producto-2">Foto producto 2</div></div>
-            <figcaption class="card__label">Foto producto 2</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="producto" tabindex="0" role="button" aria-label="Abrir Foto producto 3">
-            <div class="card__media"><div class="ph ph--card" data-slot="producto-3">Foto producto 3</div></div>
-            <figcaption class="card__label">Foto producto 3</figcaption>
-          </figure>
-
-          <!-- Contenido orgánico -->
-          <figure class="card reveal" data-category="organico" tabindex="0" role="button" aria-label="Abrir Contenido orgánico 1">
-            <div class="card__media"><div class="ph ph--card" data-slot="organico-1">Contenido orgánico 1</div></div>
-            <figcaption class="card__label">Contenido orgánico 1</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="organico" tabindex="0" role="button" aria-label="Abrir Contenido orgánico 2">
-            <div class="card__media"><div class="ph ph--card" data-slot="organico-2">Contenido orgánico 2</div></div>
-            <figcaption class="card__label">Contenido orgánico 2</figcaption>
-          </figure>
-          <figure class="card reveal" data-category="organico" tabindex="0" role="button" aria-label="Abrir Contenido orgánico 3">
-            <div class="card__media"><div class="ph ph--card" data-slot="organico-3">Contenido orgánico 3</div></div>
-            <figcaption class="card__label">Contenido orgánico 3</figcaption>
-          </figure>
-
-        </div>
+        <div class="grid" id="gallery-grid"></div>
       </div>
     </section>
 
@@ -255,6 +191,7 @@
     </div>
   </div>
 
+  <script src="contenido.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
