@@ -14,6 +14,10 @@
 
 const CONTENIDO = {
 
+  /* Sube este número cuando cambies un archivo de assets/media/ sin cambiarle
+     el nombre. Es lo que evita que el navegador siga usando el que ya tenía. */
+  version: "202609242044",
+
   /* --- HERO ---------------------------------------------------------------
      OJO: el vídeo del hero NO se declara aquí, sino directamente en
      index.html (busca <video class="hero__video">). Está así a propósito:

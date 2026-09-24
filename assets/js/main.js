@@ -8,6 +8,12 @@
   var MEDIA = 'assets/media/';
   var datos = typeof CONTENIDO !== 'undefined' ? CONTENIDO : {};
 
+  /* La versión va pegada a cada archivo: si cambia un vídeo conservando el
+     nombre, el navegador se baja el nuevo en vez de reusar el que tenía. */
+  function ruta(archivo) {
+    return MEDIA + archivo + (datos.version ? '?v=' + datos.version : '');
+  }
+
   /* ----------------------------------------------------------------------
      Reproducir un vídeo sin que el navegador lo bloquee.
      La regla es: si está silenciado y es "inline", dejan reproducir solo.
@@ -67,8 +73,8 @@
 
     if (esVideo(item.archivo)) {
       var video = document.createElement('video');
-      video.src = MEDIA + item.archivo;
-      if (item.poster) video.poster = MEDIA + item.poster;
+      video.src = ruta(item.archivo);
+      if (item.poster) video.poster = ruta(item.poster);
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
@@ -87,7 +93,7 @@
     }
 
     var img = document.createElement('img');
-    img.src = MEDIA + item.archivo;
+    img.src = ruta(item.archivo);
     img.alt = item.alt || item.etiqueta || '';
     if (!opciones.sinLazy) img.loading = 'lazy';
     return img;
