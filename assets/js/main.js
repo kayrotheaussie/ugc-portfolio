@@ -101,36 +101,6 @@
   }
 
   /* ----------------------------------------------------------------------
-     Marcas: huecos a la espera de logos
-     ---------------------------------------------------------------------- */
-  var filaMarcas = document.getElementById('brands-row');
-
-  if (filaMarcas) {
-    (datos.marcas || []).forEach(function (marca) {
-      var hueco = document.createElement('div');
-      hueco.className = 'brand';
-      if (marca.archivo) {
-        var logo = document.createElement('img');
-        logo.src = MEDIA + marca.archivo;
-        logo.alt = marca.nombre || '';
-        logo.loading = 'lazy';
-        hueco.appendChild(logo);
-      } else {
-        hueco.textContent = marca.nombre || '';
-      }
-      filaMarcas.appendChild(hueco);
-    });
-  }
-
-  /* ----------------------------------------------------------------------
-     UGC Content: la imagen con los stickers, entera
-     ---------------------------------------------------------------------- */
-  var contenedorCollage = document.getElementById('collage-imagen');
-  if (contenedorCollage) {
-    contenedorCollage.appendChild(crearMedia(datos.collage, { clasePlaceholder: 'ph--wide' }));
-  }
-
-  /* ----------------------------------------------------------------------
      Selected clips
      ---------------------------------------------------------------------- */
   var rejilla = document.getElementById('gallery-grid');
@@ -238,17 +208,21 @@
   });
 
   /* ----------------------------------------------------------------------
-     Fotos: carrusel continuo. La pista se duplica para que el bucle no
-     tenga costura; el clon queda oculto para los lectores de pantalla.
+     Fotografía: dos filas que se cruzan.
+     Las fotos de contenido.js se reparten alternándolas, así las dos filas
+     quedan equilibradas aunque el número sea impar. Cada fila duplica su
+     pista para que el bucle no tenga costura, y el clon queda oculto para
+     los lectores de pantalla.
      ---------------------------------------------------------------------- */
-  var marquee = document.getElementById('marquee');
   var fotos = datos.fotos || [];
 
-  if (marquee && fotos.length) {
+  function montarFila(contenedor, lista) {
+    if (!contenedor || !lista.length) return;
+
     var pista = document.createElement('div');
     pista.className = 'marquee__track';
 
-    fotos.forEach(function (foto) {
+    lista.forEach(function (foto) {
       var item = document.createElement('div');
       item.className = 'marquee__item';
       item.appendChild(crearMedia(foto, { clasePlaceholder: 'ph--portrait' }));
@@ -259,14 +233,17 @@
     clon.classList.add('marquee__track--clon');
     clon.setAttribute('aria-hidden', 'true');
 
-    marquee.appendChild(pista);
-    marquee.appendChild(clon);
+    contenedor.appendChild(pista);
+    contenedor.appendChild(clon);
 
-    /* Más fotos, más recorrido: así la velocidad se mantiene constante */
-    var segundos = fotos.length * 9;
+    /* Cuantas más fotos, más recorrido: así la velocidad no cambia */
+    var segundos = lista.length * 11;
     pista.style.animationDuration = segundos + 's';
     clon.style.animationDuration = segundos + 's';
   }
+
+  montarFila(document.getElementById('marquee-1'), fotos.filter(function (_, i) { return i % 2 === 0; }));
+  montarFila(document.getElementById('marquee-2'), fotos.filter(function (_, i) { return i % 2 === 1; }));
 
   /* ----------------------------------------------------------------------
      Formulario: FormSubmit necesita una URL absoluta en _next, y la web

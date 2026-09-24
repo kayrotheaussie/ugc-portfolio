@@ -17,6 +17,7 @@ se ve mejor servido desde el servidor local.)
 
 ```
 index.html            Todas las secciones (y el vídeo del hero)
+assets/fonts/         La fuente del nombre del hero (ver su LEEME.md)
 gracias.html          Adonde llega el formulario tras enviarse
 contenido.js          TUS fotos y vídeos: el único archivo que tocas a diario
 assets/media/         Aquí están las fotos y los vídeos ya optimizados
@@ -26,7 +27,7 @@ assets/js/main.js     Vídeos, carrusel, lightbox y menú
 
 Para meter contenido, lee **[CONTENIDO.md](CONTENIDO.md)**: son 3 pasos.
 
-Secciones: Hero · Sobre mí · Marcas · Selected clips · UGC Content · Fotos · Got a brief?
+Secciones: Hero · Sobre mí · Selected clips · Fotografía · Got a brief?
 
 ## Cómo sustituir los placeholders
 
@@ -69,7 +70,8 @@ funcione bien haría falta un clip de 8-15 segundos.
 | Acento | `#A9C6E8` azul suave |
 | Texto y botones | `#2F4A7A` azul intenso (7,9:1 de contraste sobre el fondo) |
 | Azul de subtítulos | `#4A6FA5` (4,6:1; el `#A9C6E8` no llega como texto) |
-| Nombre y toques caligráficos | Yellowtail |
+| Nombre del hero | Advercase, con Outfit de reserva (ver `assets/fonts/LEEME.md`) |
+| Toques caligráficos | Yellowtail |
 | Títulos | Bebas Neue |
 | Texto | Work Sans |
 

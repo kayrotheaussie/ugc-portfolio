@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Outfit:wght@400;500&family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -81,7 +81,6 @@
           <ul class="about__datos">
             <li><strong>4,5</strong><span>meses</span></li>
             <li><strong>Barcelona</strong><span>y alrededores</span></li>
-            <li><strong>9:16</strong><span>formato nativo</span></li>
           </ul>
         </div>
 
@@ -95,18 +94,7 @@
     </section>
 
     <!-- ============================================================
-         3. MARCAS — huecos vacíos hasta tener los logos
-         ============================================================ -->
-    <section class="brands" aria-labelledby="titulo-marcas">
-      <div class="container">
-        <p class="eyebrow eyebrow--centrado" id="titulo-marcas">Marcas con las que he trabajado</p>
-        <!-- Los huecos salen de contenido.js -> marcas -->
-        <div class="brands__row" id="brands-row"></div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         4. SELECTED CLIPS
+         3. SELECTED CLIPS
          ============================================================ -->
     <section class="clips section" id="clips">
       <div class="container clips__head reveal">
@@ -119,31 +107,21 @@
     </section>
 
     <!-- ============================================================
-         5. UGC CONTENT — la imagen con los stickers de Kayro
-         ============================================================ -->
-    <section class="collage" aria-labelledby="titulo-collage">
-      <div class="container">
-        <h2 class="collage__word" id="titulo-collage">UGC Content</h2>
-        <p class="collage__tagline">Puppy content creator</p>
-      </div>
-      <!-- La imagen sale de contenido.js -> collage -->
-      <div class="collage__imagen reveal" id="collage-imagen"></div>
-    </section>
-
-    <!-- ============================================================
-         6. FOTOS — carrusel continuo
+         4. FOTOGRAFÍA — dos filas en direcciones opuestas
          ============================================================ -->
     <section class="photos" id="fotos" aria-labelledby="titulo-fotos">
       <div class="container photos__head reveal">
-        <p class="eyebrow">Fotografía</p>
-        <h2 class="section__title" id="titulo-fotos">Sesiones y producto</h2>
+        <h2 class="section__title" id="titulo-fotos">Fotografía</h2>
+        <p class="photos__sub">Producto y lifestyle</p>
       </div>
-      <!-- Las fotos salen de contenido.js -> fotos -->
-      <div class="marquee" id="marquee"></div>
+
+      <!-- Las fotos salen de contenido.js -> fotos, repartidas entre las dos filas -->
+      <div class="marquee marquee--izq" id="marquee-1"></div>
+      <div class="marquee marquee--der" id="marquee-2"></div>
     </section>
 
     <!-- ============================================================
-         7. CONTACTO
+         5. CONTACTO
          ============================================================ -->
     <section class="contact section" id="contacto">
       <div class="container contact__grid">
