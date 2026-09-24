@@ -62,6 +62,18 @@ H.264 1080p sin audio pesa 2,9 MB.
 Dura **2,2 segundos**, así que en bucle da un salto muy visible. Para que
 funcione bien haría falta un vídeo de 8-15 segundos.
 
+## Si un cambio no se ve en la web
+
+El navegador guarda una copia de `styles.css`, `contenido.js` y `main.js` y la
+reutiliza durante un rato. Por eso los enlaces del `index.html` llevan
+`?v=202609242039` al final: ese número es lo que obliga a bajar la versión
+nueva.
+
+**Cuando cambies uno de esos tres archivos, sube el número** (vale cualquiera,
+por ejemplo la fecha y hora del momento) en `index.html` y en `gracias.html`.
+
+Si aun así ves la web antigua, recarga con Ctrl+F5 (Cmd+Shift+R en Mac).
+
 ## El sonido de los vídeos
 
 Los vídeos de la cuadrícula van **silenciados**: los navegadores solo dejan que
