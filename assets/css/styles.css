@@ -490,7 +490,6 @@ p { margin: 0 0 1.2em; }
   color: var(--ink);
 }
 
-.contact__lead { max-width: 44ch; margin-top: var(--aire-contenido); }
 
 /* El correo es la acción principal: un bloque grande, no un enlace más */
 .contacto__destacado { margin-top: var(--aire-contenido); }
