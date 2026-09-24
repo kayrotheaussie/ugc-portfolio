@@ -31,7 +31,7 @@ No hace falta decir si es foto o vídeo: se sabe por la extensión.
 |---|---|---|
 | (el hero va en `index.html`, no aquí) | Vídeo de fondo de la portada | MP4 H.264 1080p, sin audio |
 | `sobreMi` | La foto vertical de "Sobre mí" | Vertical 3:4, WebP |
-| `galeria` | Los vídeos de "Selected clips" | Vertical 9:16, MP4 + póster JPG |
+| `galeria` | Los vídeos de "Vídeos UGC" | Vertical 9:16, MP4 + póster JPG |
 | `fotos` | Las fotos de "Fotografía" | Vertical, WebP |
 
 En `galeria` y en `fotos` puedes **añadir o quitar** líneas libremente: la

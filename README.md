@@ -27,7 +27,7 @@ assets/js/main.js     Vídeos, carrusel, lightbox y menú
 
 Para meter contenido, lee **[CONTENIDO.md](CONTENIDO.md)**: son 3 pasos.
 
-Secciones: Hero · Sobre mí · Selected clips · Fotografía · Got a brief?
+Secciones: Hero · Sobre mí · Vídeos UGC · Fotografía · ¿Hablamos?
 
 ## Cómo sustituir los placeholders
 
@@ -60,7 +60,7 @@ Firefox no reproducen, y por eso no se veía en ordenador. Convertido a MP4
 H.264 1080p sin audio pesa 2,9 MB.
 
 Dura **2,2 segundos**, así que en bucle da un salto muy visible. Para que
-funcione bien haría falta un clip de 8-15 segundos.
+funcione bien haría falta un vídeo de 8-15 segundos.
 
 ## Paleta y tipografías
 
