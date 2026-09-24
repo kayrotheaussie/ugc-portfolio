@@ -17,16 +17,16 @@ se ve mejor servido desde el servidor local.)
 
 ```
 index.html            Todas las secciones
+gracias.html          Adonde llega el formulario tras enviarse
 contenido.js          TUS fotos y vídeos: el único archivo que tocas a diario
-assets/media/         Aquí copias las fotos y los vídeos
-assets/css/styles.css Estilos (tokens de color y tipografía arriba del todo)
-assets/js/main.js     Menú, filtros, lightbox y animaciones
-hero.mp4              Vídeo de fondo del hero
+assets/media/         Aquí están las fotos y los vídeos ya optimizados
+assets/css/styles.css Estilos (colores y tipografías arriba del todo)
+assets/js/main.js     Hero, galería, carrusel, lightbox y menú
 ```
 
 Para meter contenido, lee **[CONTENIDO.md](CONTENIDO.md)**: son 3 pasos.
 
-Secciones: Hero · Sobre mí · Collage · Galería · Contacto.
+Secciones: Hero · Sobre mí · UGC Content · Galería de vídeos · Fotos · Contacto.
 
 ## Cómo sustituir los placeholders
 
@@ -39,17 +39,31 @@ Está explicado paso a paso en **[CONTENIDO.md](CONTENIDO.md)**.
 
 ## Vídeo del hero
 
-Está en la raíz, `hero.mp4`, y se carga desde `index.html`. Va en bucle,
-silenciado, con autoplay y `playsinline`. Para cambiarlo, sustituye el archivo
-por otro con el mismo nombre (MP4, 1080p, 8-15 segundos).
+Está en `assets/media/hero.mp4`, con su póster al lado, y se declara en
+`contenido.js`. Va en bucle, silenciado, con autoplay y `playsinline`.
 
-El original (`IMG_3325.mov`, 4K, 1,93 s, 7,6 MB) se convirtió a MP4 1080p sin
-pistas de audio ni metadatos, y pesa 1,8 MB. El original sigue en el historial
-de git si lo necesitas.
+Viene de `Videhome.MOV`, que estaba en **HEVC**: ese es el códec que Chrome y
+Firefox no reproducen, y por eso no se veía en ordenador. Convertido a MP4
+H.264 1080p sin audio pesa 2,9 MB.
+
+Dura **2,2 segundos**, así que en bucle da un salto muy visible. Para que
+funcione bien haría falta un clip de 8-15 segundos.
+
+## Paleta y tipografías
+
+| | |
+|---|---|
+| Fondo | `#FFF3C6` amarillo pastel (y `#FFF9E4` para alternar bloques) |
+| Acento | `#A9C6E8` azul suave |
+| Texto y botones | `#2F4A7A` azul intenso (7,9:1 de contraste sobre el fondo) |
+| Azul de subtítulos | `#4A6FA5` (4,6:1; el `#A9C6E8` no llega como texto) |
+| Títulos | Fredoka |
+| Texto | DM Sans |
 
 ## Pendiente
 
 - Texto de "Sobre mí": es provisional, falta sustituirlo por el del PDF de Canva.
-- Fotos y vídeos reales (ver [CONTENIDO.md](CONTENIDO.md)).
-- Un vídeo de hero más largo: el actual dura menos de 2 segundos.
+- La imagen de los stickers de la sección UGC Content: no está en el repo.
+- Un vídeo de hero más largo: el actual dura 2,2 segundos.
+- Confirmar el correo de FormSubmit la primera vez que llegue un mensaje.
 - Modo edición (más adelante).

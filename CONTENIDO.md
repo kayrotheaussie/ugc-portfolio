@@ -14,61 +14,68 @@ contenido.js      <- aquí escribes el nombre de cada archivo
 2. Abre `contenido.js` y escribe el nombre entre las comillas de `archivo`.
 3. Recarga la web. Ya está.
 
-Si dejas `archivo: ""` vacío, en esa posición sigue saliendo el recuadro de
-color con su etiqueta. Puedes ir rellenando de uno en uno.
+Si dejas `archivo: ""` vacío, en esa posición sale un recuadro de color con su
+etiqueta. Puedes ir rellenando de uno en uno.
 
 ### Ejemplo
 
-Antes:
-
 ```js
-{ archivo: "", categoria: "unboxing", etiqueta: "Vídeo unboxing 1" },
-```
-
-Después de copiar `unboxing-collar.mp4` en `assets/media/`:
-
-```js
-{ archivo: "unboxing-collar.mp4", categoria: "unboxing", etiqueta: "Unboxing del collar" },
+{ archivo: "video-05.mp4", poster: "video-05.jpg", etiqueta: "Unboxing Dukier" },
 ```
 
 No hace falta decir si es foto o vídeo: se sabe por la extensión.
 
 ## Qué va en cada sitio
 
-| En `contenido.js` | Qué es | Formato ideal |
+| En `contenido.js` | Qué es | Formato |
 |---|---|---|
-| `sobreMi` | La foto vertical de la sección "Sobre mí" | Vertical 3:4 (tipo retrato), JPG |
-| `stickers` | Los 5 recortes de Kayro del collage | PNG **con fondo transparente** |
-| `galeria` | Las tarjetas de la sección "Contenido" | Vertical 9:16 (lo que graba el móvil), MP4 o JPG |
+| `hero` | Vídeo de fondo de la portada + su póster | MP4 H.264 1080p, sin audio |
+| `sobreMi` | La foto vertical de "Sobre mí" | Vertical 3:4, WebP |
+| `collage` | La imagen con los stickers de Kayro | PNG o WebP, se muestra entera |
+| `galeria` | Las tarjetas de vídeo de "Contenido" | Vertical 9:16, MP4 + póster JPG |
+| `fotos` | Las fotos del carrusel | Vertical, WebP |
 
-En la galería puedes **añadir o quitar tarjetas** libremente: añade o borra
-líneas de la lista. La cuadrícula y los botones de filtro se rehacen solos, y
-un filtro solo aparece si tiene contenido.
+En `galeria` y en `fotos` puedes **añadir o quitar** líneas libremente: la
+cuadrícula y el carrusel se rehacen solos. El carrusel ajusta su velocidad al
+número de fotos, así que no hay que tocar nada más.
 
-Para cambiar el texto de debajo de una tarjeta, edita su `etiqueta`.
-Para moverla de categoría, cambia su `categoria` por otra de las claves de
-`categorias` (o inventa una nueva ahí y úsala).
+## El póster de los vídeos
 
-## El vídeo del hero
+Es la imagen que se ve antes de darle al play. Si no pones `poster`, el vídeo
+se ve negro hasta que carga. Se saca del primer fotograma:
 
-Es el único que no está en `contenido.js`, porque va suelto en la raíz:
-sustituye el archivo `hero.mp4` por el tuyo y listo (mismo nombre).
+```bash
+ffmpeg -i video.mp4 -frames:v 1 -q:v 6 video.jpg
+```
 
-Para que funcione bien como fondo debe ser:
+## Antes de subir: comprime
 
-- **MP4** (H.264), no `.mov`
-- de **8 a 15 segundos**, y que el final enganche con el principio, porque va
-  en bucle
-- **1080p** y unos pocos MB, no 4K
+Los vídeos y las fotos del móvil son enormes. Los que ya están en la web se
+convirtieron así:
 
-## Antes de subir los vídeos: comprímelos
+```bash
+# Vídeo vertical a 720p, sin audio, listo para web
+ffmpeg -i original.mov -map 0:v:0 -an -map_metadata -1 \
+  -vf "scale=-2:min(1280\,ih)" -c:v libx264 -preset slow -crf 26 \
+  -pix_fmt yuv420p -movflags +faststart video.mp4
+```
 
-Los vídeos del móvil son enormes (el del hero eran 7,6 MB por **2 segundos**,
-en 4K a 31 Mbps). Si subes 12 así, la web tardará siglos en cargar y las
-marcas se irán.
+Referencias: cada vídeo de la galería **menos de 3 MB**, cada foto **menos de
+300 KB**, el vídeo del hero **menos de 4 MB**.
 
-Súbeme los originales y yo te los dejo listos, o hazlo tú con
-[HandBrake](https://handbrake.fr) (gratis): preset *Fast 1080p30*, y quítales
-el audio si son de fondo.
+Si te da pereza, súbeme los originales y te los dejo listos.
 
-Como referencia: cada vídeo de la galería debería pesar **menos de 3 MB**.
+## Muy importante: nada de `.mov`
+
+Los `.mov` del iPhone suelen venir en HEVC, que **Chrome y Firefox no
+reproducen**. Por eso el vídeo de la portada no se veía en ordenador. Todo lo
+que vaya a la web tiene que ser **MP4 H.264** (`-c:v libx264 -pix_fmt yuv420p`).
+
+## El formulario de contacto
+
+Usa [FormSubmit](https://formsubmit.co), que no necesita servidor. La primera
+vez que alguien envíe el formulario, FormSubmit mandará un correo de
+confirmación a `kayro.theaussie@gmail.com`: **hay que abrirlo y aceptarlo una
+vez**. A partir de ahí los mensajes llegan solos.
+
+Al enviar, la web redirige a `gracias.html`.

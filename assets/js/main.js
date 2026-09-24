@@ -13,23 +13,24 @@
      ---------------------------------------------------------------------- */
 
   function esVideo(archivo) {
-    return /\.(mp4|webm|ogv|mov)$/i.test(archivo);
+    return /\.(mp4|webm|ogv)$/i.test(archivo);
   }
 
   /* Devuelve el <img>/<video> real o, si no hay archivo, el recuadro de color */
-  function crearMedia(item, extras) {
-    var opciones = extras || {};
+  function crearMedia(item, opciones) {
+    opciones = opciones || {};
 
-    if (!item.archivo) {
+    if (!item || !item.archivo) {
       var hueco = document.createElement('div');
       hueco.className = 'ph' + (opciones.clasePlaceholder ? ' ' + opciones.clasePlaceholder : '');
-      hueco.textContent = item.etiqueta || '';
+      hueco.textContent = (item && item.etiqueta) || '';
       return hueco;
     }
 
     if (esVideo(item.archivo)) {
       var video = document.createElement('video');
       video.src = MEDIA + item.archivo;
+      if (item.poster) video.poster = MEDIA + item.poster;
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
@@ -45,8 +46,21 @@
     var img = document.createElement('img');
     img.src = MEDIA + item.archivo;
     img.alt = item.alt || item.etiqueta || '';
-    img.loading = 'lazy';
+    if (!opciones.sinLazy) img.loading = 'lazy';
     return img;
+  }
+
+  /* ----------------------------------------------------------------------
+     Hero: vídeo de fondo
+     ---------------------------------------------------------------------- */
+  var heroVideo = document.getElementById('hero-video');
+
+  if (heroVideo && datos.hero && datos.hero.archivo) {
+    if (datos.hero.poster) heroVideo.poster = MEDIA + datos.hero.poster;
+    heroVideo.src = MEDIA + datos.hero.archivo;
+    heroVideo.muted = true;                 // sin esto, algunos navegadores no arrancan
+    var reproduccion = heroVideo.play();
+    if (reproduccion && reproduccion.catch) reproduccion.catch(function () {});
   }
 
   /* ----------------------------------------------------------------------
@@ -54,49 +68,29 @@
      ---------------------------------------------------------------------- */
   var contenedorFoto = document.getElementById('about-foto');
 
-  if (contenedorFoto && datos.sobreMi) {
+  if (contenedorFoto) {
     contenedorFoto.appendChild(crearMedia(datos.sobreMi, { clasePlaceholder: 'ph--portrait' }));
   }
 
   /* ----------------------------------------------------------------------
-     Collage: los cinco stickers
+     UGC Content: la imagen con los stickers, entera
      ---------------------------------------------------------------------- */
-  (datos.stickers || []).forEach(function (sticker, i) {
-    var hueco = document.getElementById('sticker-' + (i + 1));
-    if (hueco) hueco.appendChild(crearMedia(sticker, { clasePlaceholder: 'ph--sticker' }));
-  });
+  var contenedorCollage = document.getElementById('collage-imagen');
+
+  if (contenedorCollage) {
+    contenedorCollage.appendChild(crearMedia(datos.collage, { clasePlaceholder: 'ph--wide' }));
+  }
 
   /* ----------------------------------------------------------------------
-     Galería: filtros y tarjetas
+     Galería de vídeos
      ---------------------------------------------------------------------- */
-  var contenedorFiltros = document.getElementById('gallery-filters');
   var rejilla = document.getElementById('gallery-grid');
   var galeria = datos.galeria || [];
-  var categorias = datos.categorias || {};
-
-  /* Solo se muestran los filtros de categorías que tienen contenido */
-  if (contenedorFiltros) {
-    var usadas = Object.keys(categorias).filter(function (clave) {
-      return galeria.some(function (item) { return item.categoria === clave; });
-    });
-
-    ['all'].concat(usadas).forEach(function (clave, i) {
-      var boton = document.createElement('button');
-      boton.className = 'filter' + (i === 0 ? ' is-active' : '');
-      boton.dataset.filter = clave;
-      boton.type = 'button';
-      boton.setAttribute('role', 'tab');
-      boton.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      boton.textContent = clave === 'all' ? 'Todo' : categorias[clave];
-      contenedorFiltros.appendChild(boton);
-    });
-  }
 
   if (rejilla) {
     galeria.forEach(function (item, i) {
       var tarjeta = document.createElement('figure');
       tarjeta.className = 'card reveal';
-      tarjeta.dataset.category = item.categoria || '';
       tarjeta.dataset.index = String(i);
       tarjeta.tabIndex = 0;
       tarjeta.setAttribute('role', 'button');
@@ -116,25 +110,7 @@
     });
   }
 
-  var filtros = document.querySelectorAll('.filter');
   var tarjetas = document.querySelectorAll('.card');
-
-  filtros.forEach(function (boton) {
-    boton.addEventListener('click', function () {
-      var valor = boton.dataset.filter;
-
-      filtros.forEach(function (b) {
-        var activo = b === boton;
-        b.classList.toggle('is-active', activo);
-        b.setAttribute('aria-selected', String(activo));
-      });
-
-      tarjetas.forEach(function (tarjeta) {
-        var mostrar = valor === 'all' || tarjeta.dataset.category === valor;
-        tarjeta.classList.toggle('is-hidden', !mostrar);
-      });
-    });
-  });
 
   /* Los vídeos de la cuadrícula se reproducen al pasar el ratón */
   tarjetas.forEach(function (tarjeta) {
@@ -151,6 +127,38 @@
   });
 
   /* ----------------------------------------------------------------------
+     Fotos: carrusel continuo
+     La pista se duplica para que el bucle no tenga costura. El clon queda
+     oculto para los lectores de pantalla.
+     ---------------------------------------------------------------------- */
+  var marquee = document.getElementById('marquee');
+  var fotos = datos.fotos || [];
+
+  if (marquee && fotos.length) {
+    var pista = document.createElement('div');
+    pista.className = 'marquee__track';
+
+    fotos.forEach(function (foto) {
+      var item = document.createElement('div');
+      item.className = 'marquee__item';
+      item.appendChild(crearMedia(foto, { clasePlaceholder: 'ph--portrait' }));
+      pista.appendChild(item);
+    });
+
+    var clon = pista.cloneNode(true);
+    clon.classList.add('marquee__track--clon');
+    clon.setAttribute('aria-hidden', 'true');
+
+    marquee.appendChild(pista);
+    marquee.appendChild(clon);
+
+    /* Más fotos, más recorrido: así la velocidad se mantiene constante */
+    var segundos = fotos.length * 9;
+    pista.style.animationDuration = segundos + 's';
+    clon.style.animationDuration = segundos + 's';
+  }
+
+  /* ----------------------------------------------------------------------
      Lightbox: abre la tarjeta en grande (los vídeos, con sonido y controles)
      ---------------------------------------------------------------------- */
   var lightbox = document.getElementById('lightbox');
@@ -165,7 +173,7 @@
 
     ultimoFoco = tarjeta;
     lightboxMedia.innerHTML = '';
-    lightboxMedia.appendChild(crearMedia(item, { clasePlaceholder: 'ph--card', controles: true }));
+    lightboxMedia.appendChild(crearMedia(item, { clasePlaceholder: 'ph--card', controles: true, sinLazy: true }));
     lightboxLabel.textContent = item.etiqueta || '';
 
     lightbox.hidden = false;
@@ -204,21 +212,21 @@
   });
 
   /* ----------------------------------------------------------------------
+     Formulario: FormSubmit necesita una URL absoluta en _next, y la web
+     puede acabar en cualquier dominio, así que la calculamos aquí.
+     ---------------------------------------------------------------------- */
+  var campoNext = document.getElementById('form-next');
+
+  if (campoNext) {
+    var base = window.location.href.split(/[?#]/)[0].replace(/[^/]*$/, '');
+    if (/^https?:/.test(base)) campoNext.value = base + 'gracias.html';
+  }
+
+  /* ----------------------------------------------------------------------
      Año en el footer
      ---------------------------------------------------------------------- */
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
-
-  /* ----------------------------------------------------------------------
-     Vídeo del hero: algunos navegadores bloquean el autoplay hasta que
-     confirmamos que está silenciado.
-     ---------------------------------------------------------------------- */
-  var heroVideo = document.querySelector('.hero__video');
-  if (heroVideo) {
-    heroVideo.muted = true;
-    var reproduccion = heroVideo.play();
-    if (reproduccion && reproduccion.catch) reproduccion.catch(function () {});
-  }
 
   /* ----------------------------------------------------------------------
      Menú móvil

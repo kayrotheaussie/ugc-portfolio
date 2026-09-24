@@ -6,58 +6,63 @@
    1. Copia tus archivos dentro de la carpeta  assets/media/
    2. Escribe aquí el nombre del archivo en "archivo".
    3. Si "archivo" se queda vacío (""), en la web sale el recuadro de color
-      con su etiqueta, como ahora.
+      con su etiqueta.
 
    El tipo se detecta solo por la extensión: .mp4 y .webm son vídeo,
-   .jpg .png .webp son foto.
+   .webp .jpg .png son foto.
    ========================================================================== */
 
 const CONTENIDO = {
 
-  /* --- SOBRE MÍ: la foto vertical (formato 3:4, tipo retrato) ------------- */
+  /* --- HERO: vídeo de fondo a pantalla completa -------------------------- */
+  hero: {
+    archivo: "hero.mp4",              // Videhome.MOV convertido a MP4 H.264
+    poster:  "hero-poster.jpg"        // se ve mientras carga el vídeo
+  },
+
+  /* --- SOBRE MÍ: la foto vertical (3:4) ---------------------------------- */
   sobreMi: {
-    archivo: "",                        // p. ej. "kayro-humana.jpg"
+    archivo: "sobre-mi-humana.webp",
     etiqueta: "Foto Kayro + humana",
     alt: "Kayro con su humana"
   },
 
-  /* --- COLLAGE: los 5 stickers (PNG recortado con fondo transparente) ----- */
-  stickers: [
-    { archivo: "", etiqueta: "Sticker Kayro 1" },   // p. ej. "sticker-1.png"
-    { archivo: "", etiqueta: "Sticker Kayro 2" },
-    { archivo: "", etiqueta: "Sticker Kayro 3" },
-    { archivo: "", etiqueta: "Sticker Kayro 4" },
-    { archivo: "", etiqueta: "Sticker Kayro 5" }
-  ],
-
-  /* --- GALERÍA: las categorías de los botones de filtro -------------------
-     La clave (izquierda) es la que usas abajo en "categoria".              */
-  categorias: {
-    unboxing: "Unboxing / Review",
-    humor:    "Humor / TikTok",
-    producto: "Fotografía de producto",
-    organico: "Contenido orgánico"
+  /* --- UGC CONTENT: la imagen con los stickers de Kayro juntos -----------
+     Copia la imagen en assets/media/ y escribe aquí su nombre.
+     Se muestra entera y a lo ancho, sin recortar.                         */
+  collage: {
+    archivo: "",
+    etiqueta: "Imagen con los stickers de Kayro",
+    alt: "Stickers de Kayro"
   },
 
-  /* --- GALERÍA: las tarjetas, en el orden en que quieres que salgan -------
-     Formato vertical 9:16 (lo que graba el móvil). Añade o quita líneas
-     libremente; la cuadrícula y los filtros se rehacen solos.              */
+  /* --- GALERÍA DE VÍDEOS -------------------------------------------------
+     Salen en este mismo orden: 3 por fila en ordenador, 1 en móvil.
+     "poster" es la imagen que se ve antes de darle al play.               */
   galeria: [
-    { archivo: "", categoria: "unboxing", etiqueta: "Vídeo unboxing 1" },
-    { archivo: "", categoria: "unboxing", etiqueta: "Vídeo unboxing 2" },
-    { archivo: "", categoria: "unboxing", etiqueta: "Vídeo review 1" },
+    { archivo: "video-05.mp4", poster: "video-05.jpg", etiqueta: "Unboxing Dukier" },
+    { archivo: "video-08.mp4", poster: "video-08.jpg", etiqueta: "Review de juguete" },
+    { archivo: "video-06.mp4", poster: "video-06.jpg", etiqueta: "Advance Puppy Snack" },
 
-    { archivo: "", categoria: "humor",    etiqueta: "TikTok humor 1" },
-    { archivo: "", categoria: "humor",    etiqueta: "TikTok humor 2" },
-    { archivo: "", categoria: "humor",    etiqueta: "TikTok humor 3" },
+    { archivo: "video-04.mp4", poster: "video-04.jpg", etiqueta: "Primer plano en brazos" },
+    { archivo: "video-09.mp4", poster: "video-09.jpg", etiqueta: "Paseo con correa" },
+    { archivo: "video-02.mp4", poster: "video-02.jpg", etiqueta: "Humor para TikTok" }
+  ],
 
-    { archivo: "", categoria: "producto", etiqueta: "Foto producto 1" },
-    { archivo: "", categoria: "producto", etiqueta: "Foto producto 2" },
-    { archivo: "", categoria: "producto", etiqueta: "Foto producto 3" },
-
-    { archivo: "", categoria: "organico", etiqueta: "Contenido orgánico 1" },
-    { archivo: "", categoria: "organico", etiqueta: "Contenido orgánico 2" },
-    { archivo: "", categoria: "organico", etiqueta: "Contenido orgánico 3" }
+  /* --- FOTOS: el carrusel que se desliza solo ----------------------------
+     Las cuatro primeras son las destacadas (13, 20, 17, 16).
+     21.JPG no está: era idéntica a 20.JPG.                                */
+  fotos: [
+    { archivo: "foto-13.webp", alt: "Kayro con el snack de Advance" },
+    { archivo: "foto-20.webp", alt: "Kayro posando con producto de cuidado ocular" },
+    { archivo: "foto-17.webp", alt: "Kayro sentado con su arnés azul" },
+    { archivo: "foto-16.webp", alt: "Detalle del collar de Kayro" },
+    { archivo: "foto-23.webp", alt: "Retrato de perfil de Kayro" },
+    { archivo: "foto-19.webp", alt: "Kayro comiendo sandía" },
+    { archivo: "foto-22.webp", alt: "Kayro tumbado junto al pack de Advance" },
+    { archivo: "foto-15.webp", alt: "Kayro con el juguete interactivo de premios" },
+    { archivo: "foto-14.webp", alt: "Kayro de pie con el pack de Advance" },
+    { archivo: "foto-18.webp", alt: "Kayro sonriendo en el césped" }
   ]
 
 };

@@ -8,26 +8,22 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Allura&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
 
   <!-- ============================================================
-       1. HERO
-       Vídeo de fondo: sustituir el <source> por el archivo final.
+       1. HERO — el vídeo y el póster salen de contenido.js
        ============================================================ -->
   <header class="hero" id="inicio">
     <div class="hero__video-wrap">
-      <video class="hero__video" autoplay loop muted playsinline preload="auto" poster="">
-        <!-- Vídeo del hero. Para cambiarlo, sustituye este archivo o este src. -->
-        <source src="hero.mp4" type="video/mp4" />
-      </video>
+      <video class="hero__video" id="hero-video"
+             autoplay muted loop playsinline preload="auto"></video>
       <div class="hero__overlay"></div>
     </div>
 
-    <!-- Menú repartido a lo ancho, sobre el vídeo -->
     <nav class="nav" aria-label="Navegación principal">
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
         <span></span><span></span><span></span>
@@ -35,15 +31,15 @@
       <ul class="nav__menu" id="nav-menu">
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#contenido">Contenido</a></li>
+        <li><a href="#fotos">Fotos</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
 
-    <!-- Nombre abajo a la izquierda, encima del vídeo -->
     <div class="hero__content">
       <h1 class="hero__title">
         <span class="hero__name">Kayro</span>
-        <span class="hero__script script">The Aussie</span>
+        <span class="hero__surname">the Aussie</span>
       </h1>
       <p class="hero__tagline">Puppy content creator</p>
 
@@ -98,70 +94,59 @@
     </section>
 
     <!-- ============================================================
-         3. COLLAGE
-         Cada sticker es un elemento independiente: sustituir el div
-         por un <img src="...png" alt=""> manteniendo la clase.
+         3. UGC CONTENT — una sola imagen con los stickers
          ============================================================ -->
-    <section class="collage" aria-label="Kayro content">
-      <div class="collage__arc" aria-hidden="true"></div>
-
-      <div class="collage__inner">
-        <p class="collage__script script">UGC</p>
-        <h2 class="collage__word">Content</h2>
+    <section class="collage" aria-labelledby="titulo-collage">
+      <div class="container">
+        <p class="collage__eyebrow">UGC</p>
+        <h2 class="collage__word" id="titulo-collage">Content</h2>
         <p class="collage__tagline">Puppy content creator</p>
       </div>
 
-      <!-- Los 5 stickers salen de contenido.js -> stickers -->
-      <div class="sticker sticker--1" id="sticker-1"></div>
-      <div class="sticker sticker--2" id="sticker-2"></div>
-      <div class="sticker sticker--3" id="sticker-3"></div>
-      <div class="sticker sticker--4" id="sticker-4"></div>
-      <div class="sticker sticker--5" id="sticker-5"></div>
+      <!-- La imagen sale de contenido.js -> collage -->
+      <div class="collage__imagen reveal" id="collage-imagen"></div>
     </section>
 
     <!-- ============================================================
-         4. GALERÍA
+         4. GALERÍA DE VÍDEOS
          ============================================================ -->
     <section class="gallery section" id="contenido">
-      <div class="container">
-        <header class="gallery__head reveal">
-          <h2 class="section__title">Contenido</h2>
-          <p class="section__subtitle">Lo que he grabado últimamente</p>
-        </header>
-
-        <!-- Los filtros y las tarjetas salen de contenido.js -> categorias y galeria -->
-        <div class="filters reveal" id="gallery-filters" role="tablist" aria-label="Filtrar contenido por categoría"></div>
-
-        <div class="grid" id="gallery-grid"></div>
+      <div class="container gallery__head reveal">
+        <h2 class="section__title">Contenido</h2>
+        <p class="section__subtitle">Lo que he grabado últimamente</p>
       </div>
+
+      <!-- Las tarjetas salen de contenido.js -> galeria -->
+      <div class="grid" id="gallery-grid"></div>
     </section>
 
     <!-- ============================================================
-         5. CONTACTO
+         5. FOTOS — carrusel continuo
+         ============================================================ -->
+    <section class="photos" id="fotos" aria-labelledby="titulo-fotos">
+      <div class="container photos__head reveal">
+        <h2 class="section__title" id="titulo-fotos">Fotos</h2>
+        <p class="section__subtitle">Sesiones y fotografía de producto</p>
+      </div>
+
+      <!-- Las fotos salen de contenido.js -> fotos -->
+      <div class="marquee" id="marquee"></div>
+    </section>
+
+    <!-- ============================================================
+         6. CONTACTO
          ============================================================ -->
     <section class="contact section" id="contacto">
       <div class="container contact__grid">
 
         <div class="contact__intro reveal">
-          <p class="contact__script script">Vamos a conocernos</p>
+          <p class="contact__eyebrow">Vamos a conocernos</p>
           <h2 class="contact__title">¿Hablamos?</h2>
           <p class="contact__lead">
             Si tu marca es pet friendly y quiere contenido con un cachorro que de verdad
             disfruta grabando, escríbeme. Respondo rápido (mi humana, en realidad).
           </p>
 
-          <div class="contact__actions">
-            <a class="btn btn--primary" href="mailto:kayro.theaussie@gmail.com">
-              kayro.theaussie@gmail.com
-            </a>
-            <div class="contact__social">
-              <a class="btn btn--ghost" href="https://instagram.com/kayro.theaussie" target="_blank" rel="noopener">Instagram @kayro.theaussie</a>
-              <a class="btn btn--ghost" href="https://tiktok.com/@kayro.theaussie" target="_blank" rel="noopener">TikTok @kayro.theaussie</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact__services reveal">
           <h3 class="services__title">Servicios</h3>
           <ul class="services">
             <li>UGC</li>
@@ -170,7 +155,55 @@
             <li>Fotografía de mascotas</li>
             <li>Fotografía de producto</li>
           </ul>
+
+          <div class="contact__direct">
+            <a class="btn btn--ghost" href="mailto:kayro.theaussie@gmail.com">kayro.theaussie@gmail.com</a>
+            <a class="btn btn--ghost" href="https://instagram.com/kayro.theaussie" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn btn--ghost" href="https://tiktok.com/@kayro.theaussie" target="_blank" rel="noopener">TikTok</a>
+          </div>
         </div>
+
+        <!-- FormSubmit: web estática, sin backend. El correo llega a
+             kayro.theaussie@gmail.com. La primera vez que se envíe, FormSubmit
+             manda un email de confirmación que hay que aceptar. -->
+        <form class="form reveal" id="form-contacto"
+              action="https://formsubmit.co/kayro.theaussie@gmail.com"
+              method="POST">
+
+          <input type="hidden" name="_subject" value="Nueva marca interesada en Kayro">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" id="form-next" value="https://kayrotheaussie.github.io/ugc-portfolio/gracias.html">
+          <!-- Trampa para bots: si la rellenan, FormSubmit descarta el envío -->
+          <input type="text" name="_honey" class="form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form__row">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required minlength="2"
+                   autocomplete="name" placeholder="Tu nombre o el de la marca">
+          </div>
+
+          <div class="form__row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required
+                   autocomplete="email" placeholder="hola@tumarca.com">
+          </div>
+
+          <div class="form__row">
+            <label for="zona">Zona o ciudad</label>
+            <input type="text" id="zona" name="zona" required minlength="2"
+                   placeholder="Barcelona, Madrid, online...">
+          </div>
+
+          <div class="form__row">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" required minlength="10"
+                      placeholder="Cuéntame qué necesitas: producto, formato, fechas..."></textarea>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit">Enviar</button>
+          <p class="form__nota">Te respondo en 24-48 h.</p>
+        </form>
 
       </div>
     </section>
@@ -178,8 +211,8 @@
   </main>
 
   <footer class="footer">
-    <p>Kayro <span class="script">The Aussie</span> · Puppy content creator</p>
-    <p class="footer__small">&copy; <span id="year"></span> · Hecho con muchos premios</p>
+    <p class="footer__name">Kayro the Aussie</p>
+    <p class="footer__small">Puppy content creator · &copy; <span id="year"></span></p>
   </footer>
 
   <!-- Lightbox de la galería -->
