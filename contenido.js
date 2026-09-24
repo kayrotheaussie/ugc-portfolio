@@ -16,7 +16,7 @@ const CONTENIDO = {
 
   /* Sube este número cuando cambies un archivo de assets/media/ sin cambiarle
      el nombre. Es lo que evita que el navegador siga usando el que ya tenía. */
-  version: "202609242044",
+  version: "202609242053",
 
   /* --- HERO ---------------------------------------------------------------
      OJO: el vídeo del hero NO se declara aquí, sino directamente en
@@ -54,12 +54,12 @@ const CONTENIDO = {
     { archivo: "foto-20.webp", alt: "Kayro posando con producto de cuidado ocular" },
     { archivo: "foto-17.webp", alt: "Kayro sentado con su arnés azul" },
     { archivo: "foto-16.webp", alt: "Detalle del collar de Kayro" },
+    { archivo: "foto-26.webp", alt: "Kayro sentado en un valle de montaña" },
     { archivo: "foto-23.webp", alt: "Retrato de perfil de Kayro" },
+    { archivo: "foto-27.webp", alt: "Kayro asomado a la ventanilla de la furgoneta" },
     { archivo: "foto-19.webp", alt: "Kayro comiendo sandía" },
-    { archivo: "foto-22.webp", alt: "Kayro tumbado junto al pack de Advance" },
-    { archivo: "foto-15.webp", alt: "Kayro con el juguete interactivo de premios" },
-    { archivo: "foto-14.webp", alt: "Kayro de pie con el pack de Advance" },
-    { archivo: "foto-18.webp", alt: "Kayro sonriendo en el césped" }
+    { archivo: "foto-28.webp", alt: "Kayro en brazos, de frente" },
+    { archivo: "foto-15.webp", alt: "Kayro con el juguete interactivo de premios" }
   ]
 
 };
