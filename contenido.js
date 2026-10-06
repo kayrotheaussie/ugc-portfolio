@@ -16,7 +16,7 @@ const CONTENIDO = {
 
   /* Sube este número cuando cambies un archivo de assets/media/ sin cambiarle
      el nombre. Es lo que evita que el navegador siga usando el que ya tenía. */
-  version: "202609242053",
+  version: "202610061020",
 
   /* --- HERO ---------------------------------------------------------------
      OJO: el vídeo del hero NO se declara aquí, sino directamente en
@@ -35,6 +35,7 @@ const CONTENIDO = {
      Salen en este mismo orden: 3 por fila en ordenador, 1 en móvil.
      "poster" es la imagen que se ve antes de darle al play.               */
   galeria: [
+    { archivo: "video-31.mp4", poster: "video-31.jpg", etiqueta: "Nfnatcane Alimentación" },
     { archivo: "video-05.mp4", poster: "video-05.jpg", etiqueta: "Unboxing Dukier" },
     { archivo: "video-08.mp4", poster: "video-08.jpg", etiqueta: "Review de juguete" },
     { archivo: "video-06.mp4", poster: "video-06.jpg", etiqueta: "Advance Puppy Snack" },
