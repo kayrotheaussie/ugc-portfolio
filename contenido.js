@@ -16,13 +16,25 @@ const CONTENIDO = {
 
   /* Sube este número cuando cambies un archivo de assets/media/ sin cambiarle
      el nombre. Es lo que evita que el navegador siga usando el que ya tenía. */
-  version: "202610061020",
+  version: "202610061123",
 
   /* --- HERO ---------------------------------------------------------------
      OJO: el vídeo del hero NO se declara aquí, sino directamente en
      index.html (busca <video class="hero__video">). Está así a propósito:
      si dependiera del JavaScript y algo fallara, la portada se quedaría
      negra. Para cambiarlo, sustituye assets/media/hero.mp4 y su póster.   */
+
+  /* --- MARCAS: los logos de la franja ------------------------------------
+     Están pasados a un solo color sobre fondo transparente, para que la fila
+     se vea uniforme. "escala" ajusta el tamaño de cada uno a ojo: los logos
+     anchos y bajos necesitan menos alto que los cuadrados.                */
+  marcas: [
+    { archivo: "logo-a.png", nombre: "Pet Ground",    escala: 1 },
+    { archivo: "logo-b.png", nombre: "nfnatcane",     escala: 0.8 },
+    { archivo: "logo-c.png", nombre: "Kowi Nature",   escala: 1.3 },
+    { archivo: "logo-d.png", nombre: "Dogobons",      escala: 1.25 },
+    { archivo: "logo-e.png", nombre: "Hound Culture", escala: 1 }
+  ],
 
   /* --- SOBRE MÍ: la foto vertical (3:4) ---------------------------------- */
   sobreMi: {

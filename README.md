@@ -27,7 +27,7 @@ assets/js/main.js     Vídeos, carrusel, lightbox y menú
 
 Para meter contenido, lee **[CONTENIDO.md](CONTENIDO.md)**: son 3 pasos.
 
-Secciones: Hero · Sobre mí · Vídeos UGC · Fotografía · ¿Hablamos?
+Secciones: Hero · Sobre mí · Marcas · Vídeos UGC · Fotografía · ¿Hablamos?
 
 ## Cómo sustituir los placeholders
 
