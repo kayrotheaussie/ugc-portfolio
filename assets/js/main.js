@@ -108,6 +108,26 @@
   }
 
   /* ----------------------------------------------------------------------
+     Marcas: la fila de logos
+     ---------------------------------------------------------------------- */
+  var filaMarcas = document.getElementById('marcas-fila');
+
+  if (filaMarcas) {
+    (datos.marcas || []).forEach(function (marca) {
+      if (!marca.archivo) return;
+      var hueco = document.createElement('div');
+      hueco.className = 'marca';
+      var logo = document.createElement('img');
+      logo.src = ruta(marca.archivo);
+      logo.alt = marca.nombre || '';
+      logo.loading = 'lazy';
+      if (marca.escala) logo.style.setProperty('--escala', marca.escala);
+      hueco.appendChild(logo);
+      filaMarcas.appendChild(hueco);
+    });
+  }
+
+  /* ----------------------------------------------------------------------
      Vídeos UGC
      ---------------------------------------------------------------------- */
   var rejilla = document.getElementById('gallery-grid');

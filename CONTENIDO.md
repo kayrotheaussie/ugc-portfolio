@@ -37,6 +37,7 @@ tenía guardada y parecerá que el cambio no se ha subido.
 |---|---|---|
 | (el hero va en `index.html`, no aquí) | Vídeo de fondo de la portada | MP4 H.264 1080p, sin audio |
 | `sobreMi` | La foto vertical de "Sobre mí" | Vertical 3:4, WebP |
+| `marcas` | Los logos de la franja de marcas | PNG con fondo transparente, un solo color |
 | `galeria` | Los vídeos de "Vídeos UGC" | Vertical 9:16, MP4 con audio + póster JPG |
 | `fotos` | Las fotos de "Fotografía" | Vertical, WebP |
 
@@ -47,6 +48,16 @@ Las fotos se reparten solas entre las dos filas: la 1ª, la 3ª, la 5ª... van a
 la fila de arriba (que se mueve hacia la izquierda) y las demás a la de abajo
 (que se mueve hacia la derecha). Cada fila ajusta su velocidad al número de
 fotos que le toquen, así que el ritmo no cambia por añadir más.
+
+## Los logos de las marcas
+
+Van todos del mismo tono y con transparencia, para que la fila se lea como un
+bloque. Si añades uno, recórtalo sobre fondo transparente y píntalo del color
+`#2C4257`; si te lo pasan con fondo, dímelo y lo preparo.
+
+El campo `escala` de cada marca ajusta su tamaño a ojo: un logo ancho y bajo
+necesita menos alto que uno cuadrado para verse del mismo tamaño. 1 es el
+tamaño base; 1,3 lo agranda un 30 %.
 
 ## El póster de los vídeos
 
