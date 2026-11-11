@@ -341,15 +341,21 @@ p { margin: 0 0 1.2em; }
 .videos { background: var(--butter); }
 .videos__head { margin-bottom: var(--aire-contenido); }
 
+/* Flex en vez de grid: así la última fila, si va incompleta, se queda
+   centrada en lugar de dejar el hueco a la derecha. */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 3.5rem);
+  --hueco-col: clamp(1.5rem, 3vw, 3.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(2rem, 4vw, 3rem) var(--hueco-col);
   width: min(100% - 96px, 1120px);
   margin-inline: auto;
 }
 
-.card { margin: 0; cursor: pointer; }
+.card { flex: 0 1 calc((100% - 2 * var(--hueco-col)) / 3); }
+
+.card { margin: 0; cursor: pointer; min-width: 0; }
 
 .card__media {
   aspect-ratio: 9 / 16;
@@ -761,7 +767,8 @@ p { margin: 0 0 1.2em; }
   .about__datos { flex-wrap: wrap; gap: 22px 34px; }
 
   /* Una sola columna */
-  .grid { grid-template-columns: 1fr; width: calc(100% - 32px); max-width: 360px; }
+  .grid { width: calc(100% - 32px); max-width: 360px; }
+  .card { flex: 0 1 100%; }
 
 
   .marquee__item { width: 200px; }

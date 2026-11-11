@@ -16,7 +16,7 @@ const CONTENIDO = {
 
   /* Sube este número cuando cambies un archivo de assets/media/ sin cambiarle
      el nombre. Es lo que evita que el navegador siga usando el que ya tenía. */
-  version: "202610061123",
+  version: "202611111216",
 
   /* --- HERO ---------------------------------------------------------------
      OJO: el vídeo del hero NO se declara aquí, sino directamente en
@@ -47,14 +47,23 @@ const CONTENIDO = {
      Salen en este mismo orden: 3 por fila en ordenador, 1 en móvil.
      "poster" es la imagen que se ve antes de darle al play.               */
   galeria: [
-    { archivo: "video-31.mp4", poster: "video-31.jpg", etiqueta: "Nfnatcane Alimentación" },
-    { archivo: "video-05.mp4", poster: "video-05.jpg", etiqueta: "Unboxing Dukier" },
-    { archivo: "video-08.mp4", poster: "video-08.jpg", etiqueta: "Review de juguete" },
-    { archivo: "video-06.mp4", poster: "video-06.jpg", etiqueta: "Advance Puppy Snack" },
+    // Fila 1
+    { archivo: "video-kowi.mp4",  poster: "video-kowi.jpg",  etiqueta: "Kowi Nature" },
+    { archivo: "video-hound.mp4", poster: "video-hound.jpg", etiqueta: "Unboxing Hound Culture" },
+    { archivo: "video-05.mp4",    poster: "video-05.jpg",    etiqueta: "Unboxing Dukier" },
 
-    { archivo: "video-04.mp4", poster: "video-04.jpg", etiqueta: "Primer plano en brazos" },
-    { archivo: "video-09.mp4", poster: "video-09.jpg", etiqueta: "Humor para TikTok" },
-    { archivo: "video-02.mp4", poster: "video-02.jpg", etiqueta: "Humor para TikTok" }
+    // Fila 2
+    { archivo: "video-08.mp4",    poster: "video-08.jpg",    etiqueta: "Review de juguete" },
+    { archivo: "video-06.mp4",    poster: "video-06.jpg",    etiqueta: "Advance Puppy Snack" },
+    { archivo: "video-04.mp4",    poster: "video-04.jpg",    etiqueta: "Primer plano en brazos" },
+
+    // Fila 3 (queda centrada sola al ser solo dos)
+    { archivo: "video-09.mp4",    poster: "video-09.jpg",    etiqueta: "Humor para TikTok" },
+    { archivo: "video-02.mp4",    poster: "video-02.jpg",    etiqueta: "Humor para TikTok" }
+
+    // El de nfnatcane no estaba en el orden que me pasaste. Lo dejo aquí por si
+    // fue un olvido: descomenta la línea y ponla donde quieras.
+    // { archivo: "video-31.mp4", poster: "video-31.jpg", etiqueta: "Nfnatcane Alimentación" },
   ],
 
   /* --- FOTOGRAFÍA --------------------------------------------------------
